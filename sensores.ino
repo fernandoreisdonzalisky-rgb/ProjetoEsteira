@@ -5,7 +5,7 @@ Servo Fservo //denomina o servo do funil
 //postivo da ponte
 int IN1 = 7;
 //negativo da ponte
-int IN2 = 9:
+int IN2 = 9
 
 //pino do servo
 int servo = 13;
