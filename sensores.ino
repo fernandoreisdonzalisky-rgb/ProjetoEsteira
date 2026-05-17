@@ -1,5 +1,8 @@
 int sensor1 = 5;
+
 int sensor2 = 11;
+
+bool sensor1Ativado = false;
 
 void iniciaSensores() {
 
@@ -12,21 +15,23 @@ void verificarSensor1() {
 
   int estadoSensor1 = digitalRead(sensor1);
 
-  if (estadoSensor1 == LOW) {
+  // executa apenas uma vez
+  if (estadoSensor1 == LOW && sensor1Ativado == false) {
 
     Serial.println("Objeto detectado no sensor 1");
+    sensor1Ativado = true;
 
     desligarEsteira();
+    abrirFunil(1000);
+    fecharFunil(200);
+    ligarEsteira(2000);
 
-    delay(1000);
+  }
 
-    abrirFunil();
+  // reseta quando objeto sair
+  if (estadoSensor1 == HIGH) {
 
-    delay(1000);
-
-    ligarEsteira();
-
-    delay(3000);
+    sensor1Ativado = false;
   }
 }
 
