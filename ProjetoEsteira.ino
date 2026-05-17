@@ -40,7 +40,6 @@ void setup() {
 
   iniciaBotao();
 
-  ligarEsteira(2000);
 }
 
 // ===== LOOP =====
