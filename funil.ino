@@ -2,7 +2,7 @@
 
 Servo Fservo;
 
-int servoPin = 13;
+int servoPin = 8;
 
 void iniciaServo() {
 
@@ -42,10 +42,10 @@ void fecharFunil(int espera = 0) {
 
     Fservo.write(0);
 
-    delay(espera);
-
     Serial.print("Nova posicao servo: ");
     Serial.println(Fservo.read());
+
+     delay(espera);
   }
 }
 
