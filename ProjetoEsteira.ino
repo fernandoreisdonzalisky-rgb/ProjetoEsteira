@@ -4,7 +4,7 @@ void iniciaPonteH();
 
 void ligarEsteira(int espera = 0);
 
-void desligarEsteira();
+void desligarEsteira(int espera = 0);
 
 void iniciaServo();
 
@@ -40,7 +40,6 @@ void setup() {
 
   iniciaBotao();
 
-  ligarEsteira(2000);
 }
 
 // ===== LOOP =====

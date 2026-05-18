@@ -13,28 +13,34 @@ void iniciaSensores() {
 
 void verificarSensor1() {
 
-  int estadoSensor1 = digitalRead(sensor1);
+  // BLOQUEIA TODO O SENSOR
+  if (sistemaLigado == false) {
 
-  // executa apenas uma vez
-  if (estadoSensor1 == LOW && sensor1Ativado == false) {
-
-    Serial.println("Objeto detectado no sensor 1");
-    sensor1Ativado = true;
-
-    desligarEsteira();
-    abrirFunil(1000);
-    fecharFunil(200);
-    ligarEsteira(2000);
-
+    return;
   }
 
-  // reseta quando objeto sair
+  int estadoSensor1 = digitalRead(sensor1);
+
+  if (estadoSensor1 == LOW && sensor1Ativado == false) {
+
+    sensor1Ativado = true;
+
+    Serial.println("Objeto detectado no sensor 1");
+
+    desligarEsteira(1000);
+
+    abrirFunil(1000);
+
+    fecharFunil(200);
+
+    ligarEsteira(2000);
+  }
+
   if (estadoSensor1 == HIGH) {
 
     sensor1Ativado = false;
   }
 }
-
 void verificarSensor2() {
 
   int estadoSensor2 = digitalRead(sensor2);

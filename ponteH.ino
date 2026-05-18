@@ -13,7 +13,7 @@ void ligarEsteira(int espera = 0) {
   digitalWrite(IN2, LOW);
 }
 
-void desligarEsteira() {
+void desligarEsteira(int espera = 0) {
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, LOW);
 }

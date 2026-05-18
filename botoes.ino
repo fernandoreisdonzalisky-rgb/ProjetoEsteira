@@ -1,32 +1,39 @@
 int botaoliga = 9;
 int botaodesliga = 7;
 
+bool sistemaLigado = true;
+
 void iniciaBotao() {
 
   pinMode(botaoliga, INPUT_PULLUP);
   pinMode(botaodesliga, INPUT_PULLUP);
 }
 
-void botaoLiga(){
+void botaoLiga() {
 
   int estadoliga = digitalRead(botaoliga);
 
   if (estadoliga == LOW) {
-    
+
+    sistemaLigado = true;
+
+    Serial.println("Sistema LIGADO");
+
     ligarEsteira();
-
-    delay(200);
+  }
 }
 
-}
 
 void botaoDesliga() {
 
   int estadodesliga = digitalRead(botaodesliga);
+
   if (estadodesliga == LOW) {
 
-    desligarEsteira();
+    sistemaLigado = false;
 
-    delay(200);
+    Serial.println("Sistema DESLIGADO");
+
+    desligarEsteira();
   }
 }
