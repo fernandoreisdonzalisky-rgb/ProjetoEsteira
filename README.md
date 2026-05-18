@@ -1,3 +1,5 @@
 próximo passo:
 
-necessário outro sensor para ligar a esteira novamente (sensor3)
+programar para usar o Esp32 e usar a ponte I2C para os servos do braço (5)
+
+
