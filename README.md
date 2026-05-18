@@ -2,7 +2,7 @@ Descrição passo a passo do projeto
 
 botao1(liga)
 
-botao2(delsiga)
+botao2(desliga)
 
 funil(servo)
 
