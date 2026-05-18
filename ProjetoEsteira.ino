@@ -4,7 +4,7 @@ void iniciaPonteH();
 
 void ligarEsteira(int espera = 0);
 
-void desligarEsteira();
+void desligarEsteira(int espera = 0);
 
 void iniciaServo();
 
