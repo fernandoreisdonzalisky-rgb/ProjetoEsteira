@@ -1,8 +1,10 @@
-int sensor1 = 5;
+int sensor1 = 4;
 
-int sensor2 = 11;
+int sensor2 = 5;
 
 bool sensor1Ativado = false;
+
+bool sensor2Ativado = false;
 
 void iniciaSensores() {
 
@@ -14,7 +16,7 @@ void iniciaSensores() {
 void verificarSensor1() {
 
   // BLOQUEIA TODO O SENSOR
-  if (sistemaLigado == false) {
+  if (sistemaLigado == false || sensor2Ativado == true) {
 
     return;
   }
@@ -43,12 +45,27 @@ void verificarSensor1() {
 }
 void verificarSensor2() {
 
+  // BLOQUEIA TODO O SENSOR
+  if (sistemaLigado == false || sensor1Ativado == true) {
+
+    return;
+  }
+
   int estadoSensor2 = digitalRead(sensor2);
 
-  if (estadoSensor2 == LOW) {
+  if (estadoSensor2 == LOW && sensor2Ativado == false) {
+
+    sensor2Ativado = true;
 
     Serial.println("Objeto detectado no sensor 2");
 
     desligarEsteira();
+
+    ligaBraco();
+  }
+
+  if (estadoSensor2 == HIGH) {
+
+    sensor2Ativado = false;
   }
 }

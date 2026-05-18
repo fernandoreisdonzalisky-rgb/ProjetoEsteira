@@ -1,30 +1,36 @@
-// ===== PROTOTIPOS =====
-
-void iniciaPonteH();
+// ===== MÓDULOS =====
 
 void ligarEsteira(int espera = 0);
 
 void desligarEsteira(int espera = 0);
 
-void iniciaServo();
-
 void abrirFunil(int espera = 0);
 
 void fecharFunil(int espera = 0);
-
-bool servoAtivo();
-
-void iniciaSensores();
 
 void verificarSensor1();
 
 void verificarSensor2();
 
-void iniciaBotao();
-
 void botaoLiga();
 
 void botaoDesliga();
+
+bool servoAtivo();
+
+void ligaBraco();
+
+// ===== INICIALIZAÇÃO =====
+
+void iniciaPonteH();
+
+void iniciaServo();
+
+void iniciaSensores();
+
+void iniciaBotao();
+
+void iniciaBraco();
 
 // ===== SETUP =====
 
@@ -40,6 +46,7 @@ void setup() {
 
   iniciaBotao();
 
+  iniciaBraco();
 }
 
 // ===== LOOP =====

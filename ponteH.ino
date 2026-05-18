@@ -1,5 +1,5 @@
 int IN1 = 6;
-int IN2 = 4;
+int IN2 = 7;
 
 void iniciaPonteH() {
 
