@@ -4,7 +4,7 @@ Servo Fservo;
 
 int servoPin = 8;
 
-void iniciaServo() {
+void iniciaFunil() {
 
   Fservo.attach(servoPin);
 
@@ -49,19 +49,24 @@ void fecharFunil(int espera = 0) {
   }
 }
 
-bool servoAtivo() {
+bool funilAtivo() {
 
-  Serial.print("Verificando servo: ");
+  Serial.print("Verificando funil: ");
   Serial.println(Fservo.read());
 
   if (Fservo.read() == 90) {
 
-    Serial.println("Servo ATIVO");
+    Serial.println("Funil ATIVO");
 
     return true;
   }
 
-  Serial.println("Servo DESATIVADO");
+  if (Fservo.read() == 0){
+
+  Serial.println("Funil DESATIVADO");
 
   return false;
+  }
+ 
+
 }

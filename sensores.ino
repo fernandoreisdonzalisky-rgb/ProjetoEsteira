@@ -16,7 +16,7 @@ void iniciaSensores() {
 void verificarSensor1() {
 
   // BLOQUEIA TODO O SENSOR
-  if (sistemaLigado == false || sensor2Ativado == true) {
+  if (sistemaLigado == false || sensor2Ativado == true || bracoAtivo == true) {
 
     return;
   }
@@ -46,7 +46,7 @@ void verificarSensor1() {
 void verificarSensor2() {
 
   // BLOQUEIA TODO O SENSOR
-  if (sistemaLigado == false || sensor1Ativado == true) {
+  if (sistemaLigado == false || sensor1Ativado == true || bracoAtivo == true) {
 
     return;
   }
@@ -61,7 +61,9 @@ void verificarSensor2() {
 
     desligarEsteira();
 
-    ligaBraco();
+    ligaBraco(2000);
+
+    
   }
 
   if (estadoSensor2 == HIGH) {

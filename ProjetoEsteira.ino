@@ -16,15 +16,17 @@ void botaoLiga();
 
 void botaoDesliga();
 
-bool servoAtivo();
+void verificaBotaodesliga ();
 
-void ligaBraco();
+bool funilAtivo();
+
+void ligaBraco(int espera = 0);
 
 // ===== INICIALIZAÇÃO =====
 
 void iniciaPonteH();
 
-void iniciaServo();
+void iniciaFunil();
 
 void iniciaSensores();
 
@@ -40,7 +42,7 @@ void setup() {
 
   iniciaPonteH();
 
-  iniciaServo();
+  iniciaFunil();
 
   iniciaSensores();
 
@@ -60,4 +62,6 @@ void loop() {
   verificarSensor1();
 
   verificarSensor2();
+
+  verificaBotaodesliga ();
 }

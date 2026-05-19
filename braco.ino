@@ -19,6 +19,9 @@
   int pinoGarra = A4 ;
   int pinoArtgarra = A5;
 
+bool bracoAtivo = false;
+
+
   void iniciaBraco() {
 
     servoBase.attach(pinoBase);
@@ -36,11 +39,31 @@
     Serial.println("Braco iniciado");
   }
 
-  void ligaBraco() {
+  void verificaBotaodesliga () {
+    
+    //BLOQUEIA TODO O  BRACO
+    
+   if (sistemaLigado == false) 
+
+   return;
+   
+  }
+
+  void ligaBraco(int espera = 0) {
+
+    delay(espera);
+
+    bracoAtivo = true;
+
+    Serial.println("Braço Ativado");
 
 
     
+  }
 
+  void desligaBraco() {
 
+  bracoAtivo = false;
 
+  Serial.println("Braco DESATIVADO");
   }
