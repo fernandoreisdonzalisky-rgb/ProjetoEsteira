@@ -61,7 +61,6 @@ void verificarSensor2() {
 
     desligarEsteira();
 
-    ligaBraco();
   }
 
   if (estadoSensor2 == HIGH) {

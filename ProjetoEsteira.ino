@@ -18,7 +18,6 @@ void botaoDesliga();
 
 bool servoAtivo();
 
-void ligaBraco();
 
 // ===== INICIALIZAÇÃO =====
 
@@ -30,7 +29,6 @@ void iniciaSensores();
 
 void iniciaBotao();
 
-void iniciaBraco();
 
 // ===== SETUP =====
 
@@ -46,7 +44,6 @@ void setup() {
 
   iniciaBotao();
 
-  iniciaBraco();
 }
 
 // ===== LOOP =====
