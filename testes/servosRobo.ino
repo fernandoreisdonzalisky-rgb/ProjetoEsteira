@@ -1,33 +1,58 @@
-Servo servo1;
+#include <ESP32Servo.h>
 
-const int pinoServo = 13;
+Servo servoB;
+Servo servoD;
+Servo servoE;
+Servo servoG;
+
+const int pinoServoBase = 33;
+const int pinoServoDireita = 25;
+const int pinoServoEsquerda = 32;
+const int pinoServoGarra = 26;
+
 const int pinoPot = 34;
 
-void  iniciaServos(){
+int anguloBase = 0;
+int anguloDireita = 0;
+int anguloEsquerda = 0;
+int anguloGarra = 0;
 
- Serial.begin(115200);
+void iniciaServos() {
+  servoB.attach(pinoServoBase, 500, 2500);
+  servoD.attach(pinoServoDireita, 500, 2500);
+  servoE.attach(pinoServoEsquerda, 500, 2500);
+  servoG.attach(pinoServoGarra, 500, 2500);
 
-  servo1.attach(pinoServo, 500, 2500);
-
-  Serial.println("Teste de servo com potenciometro");
-
+  Serial.println("Teste de servos com potenciometro");
 }
 
-void testaServos(){
-
+void testaServos() {
   int leituraPot = analogRead(pinoPot);
 
-  int angulo = map(leituraPot, 0, 4095, 0, 180);
+  anguloBase = map(leituraPot, 0, 4095, 0, 180);
+  anguloDireita = map(leituraPot, 0, 4095, 0, 180);
+  anguloEsquerda = map(leituraPot, 0, 4095, 0, 180);
+  anguloGarra = map(leituraPot, 0, 4095, 0, 180);
 
-  servo1.write(angulo);
+  servoB.write(anguloBase);
+  servoD.write(anguloDireita);
+  servoE.write(anguloEsquerda);
+  servoG.write(anguloGarra);
 
   Serial.print("Pot: ");
   Serial.print(leituraPot);
 
-  Serial.print(" | Angulo: ");
-  Serial.println(angulo);
+  Serial.print(" | Base: ");
+  Serial.print(anguloBase);
+
+  Serial.print(" | Direita: ");
+  Serial.print(anguloDireita);
+
+  Serial.print(" | Esquerda: ");
+  Serial.print(anguloEsquerda);
+
+  Serial.print(" | Garra: ");
+  Serial.println(anguloGarra);
 
   delay(20);
-
-
 }
