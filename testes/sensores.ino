@@ -8,8 +8,7 @@ int sensor1 = 18;
   pinMode(sensor1,INPUT);
 }
 
- void testaSensor()
- {
+ void testaSensor(){
 
  int estado = digitalRead (sensor1);
 
