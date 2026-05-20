@@ -10,6 +10,8 @@ void iniciaSensores() {
 }
 
 void verificarSensor1() {
+
+  
   if (sistemaLigado == false || sensor2Ativado == true || bracoAtivo == true) {
     return;
   }
