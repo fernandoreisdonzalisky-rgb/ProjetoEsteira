@@ -11,10 +11,12 @@ void iniciaFunil() {
 }
 
 void abrirFunil(int espera) {
+
   Serial.print("Posicao atual servo: ");
   Serial.println(Fservo.read());
 
   if (Fservo.read() == 0) {
+    
     Serial.println("Abrindo funil...");
 
     delay(espera);
