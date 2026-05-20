@@ -56,7 +56,7 @@ bool funilAtivo() {
   Serial.print("Verificando funil: ");
   Serial.println(Fservo.read());
 
-  if (Fservo.read() == 90) {
+  if (funilAberto == true) {
     Serial.println("Funil ATIVO");
     return true;
   }
