@@ -4,7 +4,7 @@ int servoPin = 13;
 
 Servo Fservo;
 
-//ESSTADO DO FUNIL
+//ESTADO DO FUNIL
 
 bool funilAberto = false;
 
@@ -15,6 +15,13 @@ void iniciaFunil() {
 }
 
 void abrirFunil(int espera) {
+
+  if (sistemaLigado == false){
+
+    Fservo.write(0);
+
+    return;
+  }
 
   Serial.print("Posicao atual servo: ");
   Serial.println(Fservo.read());
@@ -35,6 +42,7 @@ void abrirFunil(int espera) {
 }
 
 void fecharFunil(int espera) {
+
   Serial.print("Posicao atual servo: ");
   Serial.println(Fservo.read());
 
@@ -61,6 +69,9 @@ bool funilAtivo() {
     return true;
   }
 
+  if (funilAberto == false){
+
   Serial.println("Funil DESATIVADO");
   return false;
+ }
 }
