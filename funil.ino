@@ -1,49 +1,38 @@
-#include <Servo.h>
+// ===== FUNIL =====
+
+int servoPin = 13;
 
 Servo Fservo;
 
-int servoPin = 8;
-
-//ESSTADO DO FUNIL
-
-bool funilAberto = false;
-
 void iniciaFunil() {
-
-  Fservo.attach(servoPin);
+  Fservo.attach(servoPin, 500, 2400);
 
   Fservo.write(0);
 }
 
-void abrirFunil(int espera = 0) {
-
+void abrirFunil(int espera) {
   Serial.print("Posicao atual servo: ");
   Serial.println(Fservo.read());
 
-  if (funilAberto == false) {
-
+  if (Fservo.read() == 0) {
     Serial.println("Abrindo funil...");
 
     delay(espera);
 
     Fservo.write(90);
 
+    delay(espera);
+
     Serial.print("Nova posicao servo: ");
     Serial.println(Fservo.read());
-
-    funilAberto = true;
-
-    delay(espera);
   }
 }
 
-void fecharFunil(int espera = 0) {
-
+void fecharFunil(int espera) {
   Serial.print("Posicao atual servo: ");
   Serial.println(Fservo.read());
 
-  if (funilAberto == true) {
-
+  if (Fservo.read() == 90) {
     Serial.println("Fechando funil...");
 
     Fservo.write(0);
@@ -51,30 +40,19 @@ void fecharFunil(int espera = 0) {
     Serial.print("Nova posicao servo: ");
     Serial.println(Fservo.read());
 
-    funilAberto = false;
-
-     delay(espera);
+    delay(espera);
   }
 }
 
 bool funilAtivo() {
-
   Serial.print("Verificando funil: ");
   Serial.println(Fservo.read());
 
-  if (funilAberto == true) {
-
+  if (Fservo.read() == 90) {
     Serial.println("Funil ATIVO");
-
     return true;
   }
 
-  if (funilAberto == false){
-
   Serial.println("Funil DESATIVADO");
-
   return false;
-  }
- 
-
 }

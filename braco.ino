@@ -1,69 +1,51 @@
-  #include <Servo.h>
+// ===== BRAÇO ROBÓTICO =====
 
-  Servo servoBase;
+Servo servoBase;
+Servo servoDireita;
+Servo servoEsquerda;
+Servo servoPulso;
+Servo servoGarra;
+Servo servoArtgarra;
 
-  Servo servoDireita;
+int pinoBase = 25;
+int pinoDireita = 26;
+int pinoEsquerda = 27;
+int pinoPulso = 14;
+int pinoGarra = 12; 
+int pinoArtgarra = 33;
 
-  Servo servoEsquerda;
+void iniciaBraco() {
+  servoBase.attach(pinoBase ); //500 = 0 graus
+  servoDireita.attach(pinoDireita ); //2400 = 180 graus
+  servoEsquerda.attach(pinoEsquerda );
+  servoPulso.attach(pinoPulso );
+  servoGarra.attach(pinoGarra );
+  servoArtgarra.attach(pinoArtgarra );
 
-  Servo servoPulso;
+  Serial.println("Braco iniciado");
+}
 
-  Servo servoGarra;
-
-  Servo servoArtgarra;
-
-  int pinoBase = A0;
-  int pinoDireita = A1;
-  int pinoEsquerda = A2 ;
-  int pinoPulso = A3 ;
-  int pinoGarra = A4 ;
-  int pinoArtgarra = A5;
-
-bool bracoAtivo = false;
-
-
-  void iniciaBraco() {
-
-    servoBase.attach(pinoBase);
-
-    servoDireita.attach(pinoDireita);
-
-    servoEsquerda.attach(pinoEsquerda);
-
-    servoPulso.attach(pinoPulso);
-
-    servoGarra.attach(pinoGarra);
-
-    servoArtgarra.attach(pinoArtgarra);
-
-    Serial.println("Braco iniciado");
+void verificaBotaodesliga() {
+  if (sistemaLigado == false) {
+    desligaBraco();
+    return;
   }
+}
 
-  void verificaBotaodesliga () {
-    
-    //BLOQUEIA TODO O  BRACO
-    
-   if (sistemaLigado == false) 
+void ligaBraco(int espera) {
+  delay(espera);
 
-   return;
-   
-  }
+  bracoAtivo = true;
 
-  void ligaBraco(int espera = 0) {
+  Serial.println("Braço Ativado");
 
-    delay(espera);
+  // Aqui depois você coloca os movimentos do braço
+}
 
-    bracoAtivo = true;
-
-    Serial.println("Braço Ativado");
-
-
-    
-  }
-
-  void desligaBraco() {
-
+void desligaBraco() {
   bracoAtivo = false;
 
   Serial.println("Braco DESATIVADO");
-  }
+
+  // colocar os comandos
+}
