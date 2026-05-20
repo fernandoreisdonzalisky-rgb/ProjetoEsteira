@@ -19,7 +19,7 @@ void abrirFunil(int espera) {
   Serial.print("Posicao atual servo: ");
   Serial.println(Fservo.read());
 
-  if (Fservo.read() == 0) {
+  if (funilAberto == false) {
     
     Serial.println("Abrindo funil...");
 
@@ -38,7 +38,8 @@ void fecharFunil(int espera) {
   Serial.print("Posicao atual servo: ");
   Serial.println(Fservo.read());
 
-  if (Fservo.read() == 90) {
+  if (funilAberto == true) {
+
     Serial.println("Fechando funil...");
 
     Fservo.write(0);
@@ -51,6 +52,7 @@ void fecharFunil(int espera) {
 }
 
 bool funilAtivo() {
+  
   Serial.print("Verificando funil: ");
   Serial.println(Fservo.read());
 
