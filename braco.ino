@@ -1,4 +1,8 @@
+#include <ESP32Servo.h>
+
+
 // ===== BRAÇO ROBÓTICO =====
+
 
 Servo servoBase;
 Servo servoDireita;
@@ -7,12 +11,12 @@ Servo servoPulso;
 Servo servoGarra;
 Servo servoArtgarra;
 
-int pinoBase = 25;
-int pinoDireita = 26;
-int pinoEsquerda = 27;
+int pinoBase = 35;
+int pinoDireita = 32;
+int pinoEsquerda = 33;
 int pinoPulso = 14;
 int pinoGarra = 12; 
-int pinoArtgarra = 33;
+int pinoArtgarra = 25;
 
 void iniciaBraco() {
   servoBase.attach(pinoBase ); //500 = 0 graus
@@ -27,7 +31,9 @@ void iniciaBraco() {
 
 void verificaBotaodesliga() {
   if (sistemaLigado == false) {
+    
     desligaBraco();
+
     return;
   }
 }

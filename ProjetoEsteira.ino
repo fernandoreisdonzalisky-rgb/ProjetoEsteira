@@ -1,5 +1,3 @@
-#include <ESP32Servo.h>
-
 
 // ===== VARIÁVEIS =====
 bool sistemaLigado = true;
