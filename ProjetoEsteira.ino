@@ -6,6 +6,8 @@ void desligarEsteira(int espera = 0);
 
 void abrirFunil(int espera = 0);
 
+bool funilAtivo();
+
 void fecharFunil(int espera = 0);
 
 void verificarSensor1();
@@ -17,8 +19,6 @@ void botaoLiga();
 void botaoDesliga();
 
 void verificaBotaodesliga ();
-
-bool funilAtivo();
 
 void ligaBraco(int espera = 0);
 
