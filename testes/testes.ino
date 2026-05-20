@@ -1,12 +1,3 @@
-void setup() {
-  // put your setup code here, to run once:
-
-}
-
-void loop() {
-  // put your main code here, to run repeatedly:
-
-}
 #include <ESP32Servo.h>
 
 Servo servo1;
@@ -15,6 +6,7 @@ const int pinoServo = 13;     // sinal do servo
 const int pinoPot = 35;       // pino analógico do potenciômetro
 
 void setup() {
+
   Serial.begin(115200);
 
   servo1.attach(pinoServo, 500, 2500); 
