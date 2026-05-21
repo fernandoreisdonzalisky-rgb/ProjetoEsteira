@@ -43,15 +43,16 @@ void ligaBraco(int espera) {
 
   bracoAtivo = true;
 
-  Serial.println("Braço Ativado");
+  Serial.println("Braço ATIVADO");
 
   // Aqui depois você coloca os movimentos do braço
 }
 
 void desligaBraco() {
+
   bracoAtivo = false;
 
-  Serial.println("Braco DESATIVADO");
+  Serial.println("Braço DESATIVADO");
 
   // colocar os comandos
 }

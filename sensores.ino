@@ -15,6 +15,8 @@ void verificarSensor1() {
   
   if (sistemaLigado == false || sensor2Ativado == true || bracoAtivo == true) {
     return;
+
+    Serial.print("Sensor1 Desativado");
   }
 
   int estadoSensor1 = digitalRead(sensor1);
@@ -44,6 +46,8 @@ void verificarSensor2() {
   
   if (sistemaLigado == false || sensor1Ativado == true || bracoAtivo == true) {
     return;
+
+    Serial.print("Sensor2 Desativado");
   }
 
   int estadoSensor2 = digitalRead(sensor2);

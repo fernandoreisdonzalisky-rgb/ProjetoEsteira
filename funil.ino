@@ -70,7 +70,6 @@ bool funilAtivo() {
   }
 
   if (funilAberto == false){
-
   Serial.println("Funil DESATIVADO");
   return false;
  }
