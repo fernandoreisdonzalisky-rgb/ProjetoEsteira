@@ -18,9 +18,8 @@ void botaoLiga();
 
 void botaoDesliga();
 
-void verificaBotaodesliga ();
 
-void ligaBraco(int espera = 0);
+
 
 // ===== INICIALIZAÇÃO =====
 
@@ -32,7 +31,7 @@ void iniciaSensores();
 
 void iniciaBotao();
 
-void iniciaBraco();
+
 
 // ===== SETUP =====
 
@@ -48,7 +47,6 @@ void setup() {
 
   iniciaBotao();
 
-  iniciaBraco();
 }
 
 // ===== LOOP =====
@@ -63,5 +61,4 @@ void loop() {
 
   verificarSensor2();
 
-  verificaBotaodesliga ();
 }
