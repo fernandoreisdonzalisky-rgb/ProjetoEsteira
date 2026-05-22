@@ -10,5 +10,4 @@ void loop() {
 
   testaServos_ard();
 
-
 }
