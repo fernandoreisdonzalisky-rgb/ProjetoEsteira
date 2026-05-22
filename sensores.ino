@@ -1,6 +1,6 @@
-int sensor1 = 4;
+int sensor1 = 7;
 
-int sensor2 = 5;
+int sensor2 = 8;
 
 bool sensor1Ativado = false;
 
@@ -18,6 +18,8 @@ void verificarSensor1() {
   // BLOQUEIA TODO O SENSOR
   if (sistemaLigado == false || sensor2Ativado == true) {
 
+    Serial.println("Sensor1 Desativado");
+
     return;
   }
 
@@ -29,13 +31,15 @@ void verificarSensor1() {
 
     Serial.println("Objeto detectado no sensor 1");
 
-    desligarEsteira(1000);
+    desligarEsteira();
 
     abrirFunil(1000);
 
     fecharFunil(200);
 
     ligarEsteira(2000);
+
+    Serial.println("Leitura1 realizada");
   }
 
   if (estadoSensor1 == HIGH) {
@@ -46,7 +50,9 @@ void verificarSensor1() {
 void verificarSensor2() {
 
   // BLOQUEIA TODO O SENSOR
-  if (sistemaLigado == false || sensor1Ativado == true) {
+  if (sistemaLigado == false || sensor1Ativado == true ) {
+
+    Serial.println("Sensor2 Desativado");
 
     return;
   }
@@ -61,6 +67,9 @@ void verificarSensor2() {
 
     desligarEsteira();
 
+    Serial.println("leitura2 realizada");
+
+    
   }
 
   if (estadoSensor2 == HIGH) {
