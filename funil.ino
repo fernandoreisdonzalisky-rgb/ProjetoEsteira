@@ -4,7 +4,7 @@ Servo Fservo;
 
 int servoPin = 8;
 
-//ESSTADO DO FUNIL
+//ESTADO DO FUNIL
 
 bool funilAberto = false;
 
