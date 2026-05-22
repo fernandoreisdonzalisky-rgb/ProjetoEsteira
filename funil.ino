@@ -1,7 +1,3 @@
-#include <Servo.h>
-
-Servo Fservo;
-
 int servoPin = 8;
 
 void iniciaServo() {
