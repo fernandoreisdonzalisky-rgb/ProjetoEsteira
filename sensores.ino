@@ -31,7 +31,7 @@ void verificarSensor1() {
 
     Serial.println("Objeto detectado no sensor 1");
 
-    desligarEsteira(1000);
+    desligarEsteira();
 
     abrirFunil(1000);
 

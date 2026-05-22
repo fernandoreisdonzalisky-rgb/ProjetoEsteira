@@ -17,9 +17,11 @@ void botaoLiga() {
 
     sistemaLigado = true;
 
+    ligarEsteira();
+
     Serial.println("Sistema LIGADO");
 
-    ligarEsteira();
+    delay(500);
   }
 }
 
@@ -32,8 +34,10 @@ void botaoDesliga() {
 
     sistemaLigado = false;
 
+    desligarEsteira();
+
     Serial.println("Sistema DESLIGADO");
 
-    desligarEsteira();
+    delay(500);
   }
 }
