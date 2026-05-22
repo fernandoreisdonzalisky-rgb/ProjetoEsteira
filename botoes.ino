@@ -1,5 +1,5 @@
-int botaoliga = 2;
-int botaodesliga = 3;
+int botaoliga = 5;
+int botaodesliga = 6;
 
 bool sistemaLigado = true;
 

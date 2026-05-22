@@ -1,5 +1,9 @@
-int IN1 = 6;
-int IN2 = 7;
+int IN1 = 2;
+int IN2 = 4;
+
+int ENA = 3;
+
+
 
 void iniciaPonteH() {
 

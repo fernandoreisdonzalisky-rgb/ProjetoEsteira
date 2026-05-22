@@ -2,7 +2,7 @@
 
 Servo Fservo;
 
-int servoPin = 8;
+int servoPin = 9;
 
 //ESTADO DO FUNIL
 

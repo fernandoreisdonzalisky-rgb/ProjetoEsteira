@@ -1,6 +1,6 @@
-int sensor1 = 4;
+int sensor1 = 7;
 
-int sensor2 = 5;
+int sensor2 = 8;
 
 bool sensor1Ativado = false;
 
