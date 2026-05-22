@@ -1,38 +1,41 @@
-#include <ESP32Servo.h>
+#include <Servo.h>
 
 Servo servoB;
 Servo servoD;
 Servo servoE;
 Servo servoG;
 
-const int pinoServoBase = 33;
-const int pinoServoDireita = 25;
-const int pinoServoEsquerda = 32;
-const int pinoServoGarra = 26;
+const int pinoServoBase = 3;
+const int pinoServoDireita = 5;
+const int pinoServoEsquerda = 6;
+const int pinoServoGarra = 9;
 
-const int pinoPot = 34;
+const int pinoPot = A0;
 
 int anguloBase = 0;
 int anguloDireita = 0;
 int anguloEsquerda = 0;
 int anguloGarra = 0;
 
-void iniciaServos() {
-  servoB.attach(pinoServoBase, 500, 2500);
-  servoD.attach(pinoServoDireita, 500, 2500);
-  servoE.attach(pinoServoEsquerda, 500, 2500);
-  servoG.attach(pinoServoGarra, 500, 2500);
+void iniciaServos_ard() {
+
+  servoB.attach(pinoServoBase);
+  servoD.attach(pinoServoDireita);
+  servoE.attach(pinoServoEsquerda);
+  servoG.attach(pinoServoGarra);
 
   Serial.println("Teste de servos com potenciometro");
 }
 
-void testaServos() {
+void testaServos_ard() {
+
   int leituraPot = analogRead(pinoPot);
 
-  anguloBase = map(leituraPot, 0, 4095, 0, 180);
-  anguloDireita = map(leituraPot, 0, 4095, 0, 180);
-  anguloEsquerda = map(leituraPot, 0, 4095, 0, 180);
-  anguloGarra = map(leituraPot, 0, 4095, 0, 180);
+  // Arduino UNO usa 0 a 1023
+  anguloBase = map(leituraPot, 0, 1023, 0, 180);
+  anguloDireita = map(leituraPot, 0, 1023, 0, 180);
+  anguloEsquerda = map(leituraPot, 0, 1023, 0, 180);
+  anguloGarra = map(leituraPot, 0, 1023, 0, 180);
 
   servoB.write(anguloBase);
   servoD.write(anguloDireita);
