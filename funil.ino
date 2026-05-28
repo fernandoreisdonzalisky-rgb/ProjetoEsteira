@@ -1,7 +1,3 @@
-#include <Servo.h>
-
-Servo Fservo;
-
 int servoPin = 9;
 
 //ESTADO DO FUNIL
