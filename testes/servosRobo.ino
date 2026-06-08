@@ -69,22 +69,25 @@ void testaServos() {
 
   delay(20);
 
-
 void ligarobo() {
+  base();
+}
 
-for(int anguloBase=0;anguloBase<=180;anguloBase++)  {
-    
-meuServo.write(anguloBase);
+void base() {
+
+  for (int anguloBase = 0; anguloBase <= 180; anguloBase++) {
+
+    meuServo.write(anguloBase);
     delay(15);
 
-    if (angulo == 65) {
-      for (int novoAngulobase = 65; novoAngulobase <= 165; novoAngulobase++) {
-        meuServo.write(novoAngulobase);
+    if (anguloBase == 65) {
+
+      for (int novoAnguloBase = 65; novoAnguloBase <= 165; novoAnguloBase++) {
+        meuServo.write(novoAnguloBase);
         delay(15);
       }
 
-      break; // para o primeiro for depois que chegou em 165
+      break;
     }
-   }
- }
+  }
 }
