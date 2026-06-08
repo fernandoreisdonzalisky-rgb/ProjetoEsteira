@@ -68,4 +68,8 @@ void testaServos() {
   Serial.println(anguloGarra);
 
   delay(20);
+
+
+
+
 }
