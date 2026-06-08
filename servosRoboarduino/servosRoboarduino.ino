@@ -19,6 +19,8 @@ int anguloDireita = 0;
 int anguloEsquerda = 0;
 int anguloGarra = 0;
 
+int sistemaLigado = 0;
+
 void setup() {
   Serial.begin(9600); // Inicializa a comunicação serial obrigatória para o monitor
   iniciaServos();
@@ -70,32 +72,52 @@ void testaServos() {
 
   delay(20);
 
+}
+
 void ligarobo() {
+  
+  if (sistemaLigado == false) {
+    Serial.println("Braço Desativado");
+    return;
+  }
+  
   base();
 }
 
 void base() {
 
- 
+  for (int primeiroAngulobase = 0; primeiroAngulobase <= 180; primeiroAngulobase++) {
 
-  for (int primeiroAnguloBase = 0; primeiroAnguloBase <= 180; primeiroAnguloBase++) {
+    if (sistemaLigado == false) {
+      Serial.println("Braço parado");
+      return;
+    }
 
-    meuServo.write(primeiroAnguloBase);
+    servoB.write(primeiroAngulobase);
     delay(15);
 
-    if (primeiroAnguloBase == 65) {
+    if (primeiroAngulobase == 65) {
 
       for (int segundoAnguloBase = 65; segundoAnguloBase <= 165; segundoAnguloBase++) {
-        meuServo.write(segundoAnguloBase);
-        delay(15);
 
-        if (segundoAnguloBase == 165) {
-
-          for (int voltaBase = 165; voltaBase >= 0; voltaBase--) {
-            meuServo.write(voltaBase);
-            delay(15);
-          }
+        if (sistemaLigado == false) {
+          Serial.println("Braço parado");
+          return;
         }
+
+        servoB.write(segundoAnguloBase);
+        delay(15);
+      }
+
+      for (int voltaBase = 165; voltaBase >= 0; voltaBase--) {
+
+        if (sistemaLigado == false) {
+          Serial.println("Braço parado");
+          return;
+        }
+
+        servoB.write(voltaBase);
+        delay(15);
       }
 
       break;
