@@ -70,7 +70,7 @@ void testaServos() {
   delay(20);
 
 
-
+void ligarobo() {
 
 for(int anguloBase=0;anguloBase<=180;anguloBase++)  {
     
@@ -86,4 +86,5 @@ meuServo.write(anguloBase);
       break; // para o primeiro for depois que chegou em 165
     }
    }
+ }
 }
