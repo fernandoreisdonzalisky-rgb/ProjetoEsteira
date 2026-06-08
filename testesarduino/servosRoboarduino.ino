@@ -1,37 +1,48 @@
-#include <Servo.h>
+#include <Servo.h> // Biblioteca padrão para Arduino
 
 Servo servoB;
 Servo servoD;
 Servo servoE;
 Servo servoG;
 
-const int pinoServoBase = 3;
-const int pinoServoDireita = 5;
-const int pinoServoEsquerda = 6;
-const int pinoServoGarra = 9;
+// Pinos adaptados para o Arduino Uno (Servos em pinos PWM, Potenciômetro em pino Analógico)
 
-const int pinoPot = A0;
+const int pinoServoBase = 3;     // Pino PWM
+const int pinoServoDireita = 5;  // Pino PWM
+const int pinoServoEsquerda = 6; // Pino PWM
+const int pinoServoGarra = 9;    // Pino PWM
+
+const int pinoPot = A0;          // Pino Analógico do Arduino
 
 int anguloBase = 0;
 int anguloDireita = 0;
 int anguloEsquerda = 0;
 int anguloGarra = 0;
 
-void iniciaServos_ard() {
-
-  servoB.attach(pinoServoBase);
-  servoD.attach(pinoServoDireita);
-  servoE.attach(pinoServoEsquerda);
-  servoG.attach(pinoServoGarra);
-
-  Serial.println("Teste de servos com potenciometro");
+void setup() {
+  Serial.begin(9600); // Inicializa a comunicação serial obrigatória para o monitor
+  iniciaServos();
 }
 
-void testaServos_ard() {
+void loop() {
+  testaServos();
+}
 
+void iniciaServos() {
+  // O Arduino gerencia os pulsos de 500 a 2500us automaticamente, 
+  // mas você pode mantê-los se seus servos específicos exigirem essa calibração.
+  servoB.attach(pinoServoBase, 500, 2500);
+  servoD.attach(pinoServoDireita, 500, 2500);
+  servoE.attach(pinoServoEsquerda, 500, 2500);
+  servoG.attach(pinoServoGarra, 500, 2500);
+
+  Serial.println("Teste de servos com potenciometro no Arduino");
+}
+
+void testaServos() {
   int leituraPot = analogRead(pinoPot);
 
-  // Arduino UNO usa 0 a 1023
+  // Ajustado de 4095 (ESP32) para 1023 (Arduino)
   anguloBase = map(leituraPot, 0, 1023, 0, 180);
   anguloDireita = map(leituraPot, 0, 1023, 0, 180);
   anguloEsquerda = map(leituraPot, 0, 1023, 0, 180);
@@ -58,4 +69,36 @@ void testaServos_ard() {
   Serial.println(anguloGarra);
 
   delay(20);
+
+void ligarobo() {
+  base();
+}
+
+void base() {
+
+ 
+
+  for (int primeiroAnguloBase = 0; primeiroAnguloBase <= 180; primeiroAnguloBase++) {
+
+    meuServo.write(primeiroAnguloBase);
+    delay(15);
+
+    if (primeiroAnguloBase == 65) {
+
+      for (int segundoAnguloBase = 65; segundoAnguloBase <= 165; segundoAnguloBase++) {
+        meuServo.write(segundoAnguloBase);
+        delay(15);
+
+        if (segundoAnguloBase == 165) {
+
+          for (int voltaBase = 165; voltaBase >= 0; voltaBase--) {
+            meuServo.write(voltaBase);
+            delay(15);
+          }
+        }
+      }
+
+      break;
+    }
+  }
 }
