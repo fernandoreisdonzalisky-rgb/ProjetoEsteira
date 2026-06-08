@@ -69,6 +69,8 @@ void verificarSensor2() {
 
     Serial.println("leitura2 realizada");
 
+    ligaRobo();
+
     
   }
 

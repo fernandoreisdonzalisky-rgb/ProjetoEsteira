@@ -11,7 +11,7 @@ void iniciaFunil() {
   Fservo.write(0);
 }
 
-void abrirFunil(int espera = 0) {
+void abrirFunil(int espera) {
 
   Serial.print("Posicao atual servo: ");
   Serial.println(Fservo.read());
@@ -33,7 +33,7 @@ void abrirFunil(int espera = 0) {
   }
 }
 
-void fecharFunil(int espera = 0) {
+void fecharFunil(int espera) {
 
   Serial.print("Posicao atual servo: ");
   Serial.println(Fservo.read());

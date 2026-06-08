@@ -2,6 +2,14 @@
 
 Servo Fservo;
 
+Servo servoB;
+
+Servo servoD;
+
+Servo servoE;
+
+Servo servoG;
+
 
 // ===== MÓDULOS =====
 
@@ -23,6 +31,9 @@ void botaoLiga();
 
 void botaoDesliga();
 
+void ligaRobo();
+
+void base(int espera = 0);
 
 
 

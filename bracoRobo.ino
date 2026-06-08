@@ -1,79 +1,83 @@
-int sensor1 = 7;
+ 
+int servoBasepin = 10;
 
-int sensor2 = 8;
+int servoDireitapin = 11;
 
-bool sensor1Ativado = false;
+int servoEsquerdapin = 12;
 
-bool sensor2Ativado = false;
+int servoGarrapin = 13;
 
-void iniciaSensores() {
+void iniciaRobo() {
 
-  pinMode(sensor1, INPUT_PULLUP);
+  servoB.attach(servoBasepin);
 
-  pinMode(sensor2, INPUT_PULLUP);
+  servoD.attach(servoDireitapin); 
+
+  servoE.attach(servoEsquerdapin);
+
+  servoG.attach(servoGarrapin); 
+
+  servoB.write(0);
+  
+  servoD.write(0);
+
+  servoE.write(0);
+
+  servoG.write(0);
 }
 
-void verificarSensor1() {
 
-  // BLOQUEIA TODO O SENSOR
-  if (sistemaLigado == false || sensor2Ativado == true) {
-
-    Serial.println("Sensor1 Desativado");
-
+void ligaRobo() {
+  
+  if (sistemaLigado == false) {
+    Serial.println("Braço Desativado");
     return;
   }
-
-  int estadoSensor1 = digitalRead(sensor1);
-
-  if (estadoSensor1 == LOW && sensor1Ativado == false) {
-
-    sensor1Ativado = true;
-
-    Serial.println("Objeto detectado no sensor 1");
-
-    desligarEsteira();
-
-    abrirFunil(1000);
-
-    fecharFunil(200);
-
-    ligarEsteira(2000);
-
-    Serial.println("Leitura1 realizada");
-  }
-
-  if (estadoSensor1 == HIGH) {
-
-    sensor1Ativado = false;
-  }
+  
+  base(3000);
 }
-void verificarSensor2() {
 
-  // BLOQUEIA TODO O SENSOR
-  if (sistemaLigado == false || sensor1Ativado == true ) {
+void base(int espera) {
 
-    Serial.println("Sensor2 Desativado");
+  for (int primeiroAngulobase = 0; primeiroAngulobase <= 180; primeiroAngulobase++) {
 
-    return;
-  }
+    if (sistemaLigado == false) {
+      Serial.println("Base parada");
+      return;
+    }
 
-  int estadoSensor2 = digitalRead(sensor2);
+    servoB.write(primeiroAngulobase);
+    delay(15);
 
-  if (estadoSensor2 == LOW && sensor2Ativado == false) {
+    if (primeiroAngulobase == 65) {
 
-    sensor2Ativado = true;
+      delay(espera);
 
-    Serial.println("Objeto detectado no sensor 2");
+      for (int segundoAnguloBase = 65; segundoAnguloBase <= 165; segundoAnguloBase++) {
 
-    desligarEsteira();
+        if (sistemaLigado == false) {
+          Serial.println("Base parada");
+          return;
+        }
 
-    Serial.println("leitura2 realizada");
+        servoB.write(segundoAnguloBase);
+        delay(15);
+      }
+        
+        delay(espera);
 
-    
-  }
+      for (int voltaBase = 165; voltaBase >= 0; voltaBase--) {
 
-  if (estadoSensor2 == HIGH) {
+        if (sistemaLigado == false) {
+          Serial.println("Base parada");
+          return;
+        }
 
-    sensor2Ativado = false;
+        servoB.write(voltaBase);
+        delay(15);
+      }
+
+      break;
+    }
   }
 }
