@@ -28,6 +28,8 @@ void setup() {
 
 void loop() {
   testaServos();
+
+  
 }
 
 void iniciaServos() {
@@ -81,10 +83,10 @@ void ligarobo() {
     return;
   }
   
-  base();
+  base(3000);
 }
 
-void base() {
+void base(int espera) {
 
   for (int primeiroAngulobase = 0; primeiroAngulobase <= 180; primeiroAngulobase++) {
 
@@ -98,6 +100,8 @@ void base() {
 
     if (primeiroAngulobase == 65) {
 
+      delay(espera);
+
       for (int segundoAnguloBase = 65; segundoAnguloBase <= 165; segundoAnguloBase++) {
 
         if (sistemaLigado == false) {
@@ -108,6 +112,8 @@ void base() {
         servoB.write(segundoAnguloBase);
         delay(15);
       }
+        
+        delay(espera);
 
       for (int voltaBase = 165; voltaBase >= 0; voltaBase--) {
 
