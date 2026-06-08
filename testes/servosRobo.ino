@@ -70,8 +70,11 @@ void testaServos() {
   delay(20);
 
 
-  for (int anguloBase = 0; anguloBase <= 180; anguloBase++) {
-    meuServo.write(anguloBase);
+
+
+for(int anguloBase=0;anguloBase<=180;anguloBase++)  {
+    
+meuServo.write(anguloBase);
     delay(15);
 
     if (angulo == 65) {
