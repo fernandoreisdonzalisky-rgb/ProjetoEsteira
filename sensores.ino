@@ -2,9 +2,6 @@ int sensor1 = 7;
 
 int sensor2 = 8;
 
-bool sensor1Ativado = false;
-
-bool sensor2Ativado = false;
 
 void iniciaSensores() {
 
@@ -69,9 +66,6 @@ void verificarSensor2() {
 
     Serial.println("leitura2 realizada");
 
-    ligaRobo();
-
-    
   }
 
   if (estadoSensor2 == HIGH) {

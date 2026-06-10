@@ -10,6 +10,10 @@ Servo servoE;
 
 Servo servoG;
 
+bool sistemaLigado = false;
+bool sensor1Ativado = false;
+bool sensor2Ativado = false;
+
 
 // ===== MÓDULOS =====
 
