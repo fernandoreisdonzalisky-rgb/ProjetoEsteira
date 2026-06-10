@@ -19,8 +19,6 @@ int anguloDireita = 0;
 int anguloEsquerda = 0;
 int anguloGarra = 0;
 
-int sistemaLigado = 0;
-
 void setup() {
   Serial.begin(9600); // Inicializa a comunicação serial obrigatória para o monitor
   iniciaServos();
@@ -48,9 +46,9 @@ void testaServos() {
 
   // Ajustado de 4095 (ESP32) para 1023 (Arduino)
   anguloBase = map(leituraPot, 0, 1023, 0, 180);
-  anguloDireita = map(leituraPot, 0, 1023, 0, 180);
-  anguloEsquerda = map(leituraPot, 0, 1023, 0, 180);
-  anguloGarra = map(leituraPot, 0, 1023, 0, 180);
+  anguloDireita = map(leituraPot, 0, 1023, 105, 180);
+  anguloEsquerda = map(leituraPot, 0, 1023, 60, 180);
+  anguloGarra = map(leituraPot, 0, 1023, 0, 40);
 
   servoB.write(anguloBase);
   servoD.write(anguloDireita);
