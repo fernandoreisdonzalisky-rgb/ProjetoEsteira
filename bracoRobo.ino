@@ -11,10 +11,10 @@ void iniciaRobo() {
     servoE.attach(servoEsquerdapin);
     servoG.attach(servoGarrapin); 
 
-    servoB.write(0); //limite min Base (0 - estoque ; 45 esteira ; 90 parado ; 135 esteira; 180 caminhão)
-    servoD.write(105); //limite min Avanço (105 - recolhido ; 160 avançado)
-    servoE.write(60); //limite min Altura (60 -baixo ; 170 -alto )
-    servoG.write(0); //limite min Garra (0 - aberto ; 40 - fechado)
+    servoB.write(0); //limite min Base
+    servoD.write(105); //limite min Avanço
+    servoE.write(60); //limite min Altura
+    servoG.write(0); //limite min Garra
   }
 
 void ligaRobo() {
@@ -24,209 +24,151 @@ void ligaRobo() {
       return;
     }
     
-    base(2000);
-    avanca();
-    garra();
-  }
-
-void base(int espera) {
-
-  // Vai de 0 até 65
-
-  if (servoG.read() == 40) {
-
-    for (int primeiroAnguloBase = 0; primeiroAnguloBase <= 45; primeiroAnguloBase++) { //robo vai até a esteira
-
-      if (sistemaLigado == false) {
-       Serial.println("Base interrompida"); 
-       return;
-      }
-
-     servoB.write(primeiroAnguloBase);
-     delay(15);
-
-     Serial.println("robo indo...");
-
-     bracoAtivo = true;
-
-    }
-  }
-
- delay(espera); // espera em 65 graus
-
-    // Vai de 65 até 90
-
-  if (servoG.read() == 0){
-
-    for (int segundoAnguloBase = 45; segundoAnguloBase <= 90; segundoAnguloBase++) { //robo espera o sensor 2 ATIVAR
-
-      if (sistemaLigado == false) {
-       Serial.println("Base interrompida");
-       return;
-      }
-
-     servoB.write(segundoAnguloBase);
-     delay(15);
-
-      
-    }
     
-    Serial.println("robo parado");
   }
 
-  if (sensor2Ativado == true) { //condição para o robo ir até a esteira para pegar a caixa
+// --- FUNÇÕES DE MOVIMENTO BÁSICO (Músculos) ---
+// Estas funções garantem o movimento suave para qualquer ângulo
 
-    // Vai de 90 até 165
-   for (int terceiroAnguloBase = 90; terceiroAnguloBase <= 135; terceiroAnguloBase++) { //robo vai até o estoque
+void moverBase(int anguloDestino) {
 
-      if (sistemaLigado == false) {
-       Serial.println("Base interrompida");
-       return;
-      }
+  int atual = servoB.read();
 
-     servoB.write(terceiroAnguloBase);
-     delay(15);
+  if (atual < anguloDestino) {
 
-     Serial.print("robo indo...");
+    for (int i = atual; i <= anguloDestino; i++) {
+
+      if (!sistemaLigado) return;
+      servoB.write(i);
+      delay(15);
+    }
+  } else {
+
+    for (int i = atual; i >= anguloDestino; i--) {
+      
+      if (!sistemaLigado) return;
+
+      servoB.write(i);
+      delay(15);
     }
   }
-
-  delay(espera); // espera em 165 graus
-
-  // vai de 135 até 180
-
-  if(servoG.read() == 40) {
-
-    for (int quartoAnguloBase = 135; quartoAnguloBase >= 180; quartoAnguloBase++) { //robo vai até o caminhão
-
-      if (sistemaLigado == false) {
-       Serial.println("Base interrompida");
-       return;
-      }
-
-     servoB.write(quartoAnguloBase);
-     delay(15);
-
-     Serial.println("robo indo...");
-
-     bracoAtivo = true;
-    }
-  }
-
-  // vai de 180 até 0
-
-  if (servoG.read() == 0){
-
-    for (int voltaBase = 180; voltaBase >= 0; voltaBase--) { //robo volta para o estoque
-
-      if (sistemaLigado == false) {
-        Serial.println("Base interrompida");
-        return;
-      }
-
-     servoB.write(voltaBase);
-     delay(15);
-
-     Serial.println("robo voltando...");
-
-     bracoAtivo = true;
-    }
-  } 
 }
 
+void controlarGarra(int anguloDestino) {
 
+  int atual = servoG.read();
+
+  if (atual < anguloDestino) {
+
+    for (int i = atual; i <= anguloDestino; i++) {
+      servoG.write(i);
+      delay(15);
+    }
+  } else {
+
+    for (int i = atual; i >= anguloDestino; i--) {
+
+      servoG.write(i);
+      delay(15);
+    }
+  }
+}
+
+// Funções para Altura (E) e Avanço (D) seguindo o mesmo padrão suave
+void controlarAltura(int anguloDestino) {
+  int atual = servoE.read();
+  if (atual < anguloDestino) {
+    for (int e = atual; e <= anguloDestino; e++) {
+      if (!sistemaLigado) return;
+      servoE.write(e);
+      delay(15);
+    }
+  } else {
+    for (int e = atual; e >= anguloDestino; e--) {
+
+      if (!sistemaLigado) return;
+      servoE.write(e);
+      delay(15);
+    }
+  }
+}
+
+void controlarAvanco(int anguloDestino) {
+
+  int atual = servoD.read();
+
+  if (atual < anguloDestino) {
+
+    for (int d = atual; d <= anguloDestino; d++) {
+
+      if (!sistemaLigado) return;
+      servoD.write(d);
+      delay(15);
+    }
+ } else {
+
+    for (int i = atual; i >= anguloDestino; i--) {
+
+      if (!sistemaLigado) return;
+
+      servoD.write(i);
+      delay(15);
+    }
+  }
+}
+
+// --- FUNÇÕES DE AÇÃO COMPOSTA (Tarefas) ---
+
+void executarCicloCompleto() {
+
+  if (sistemaLigado == false) return;
+
+  // --- PARTE 1: ESTOQUE -> ESTEIRA ---
+  Serial.println("Iniciando: Estoque para Esteira");
+  bracoAtivo = true;
   
+  moverBase(0);           // Vai no Estoque
+  controlarAltura(170);   // Abaixa
+  controlarAvanco(160);   // Avança
+  controlarGarra(40);     // PEGA
+  controlarAvanco(105);   // Recolhe
+  controlarAltura(60);    // Sobe
+  
+  moverBase(45);          // Vai para o início da Esteira
+  controlarAvanco(160);   // Avança
+  controlarGarra(0);      // SOLTA na esteira
+  controlarAvanco(105);   // Recolhe
+  
+  bracoAtivo = false;     // Libera a esteira para levar a caixa
+  moverBase(90);          // Fica em posição de espera no meio
 
-void altura() {
+  // --- PARTE 2: ESPERAR CHEGAR NO SENSOR 2 ---
+  Serial.println("Aguardando caixa chegar no Sensor 2...");
 
-  if (servoB.read() == 45) {
+  while (sensor2Ativado == false) { // Enquanto NÃO chegar no sensor 2
+    if (!sistemaLigado) return;
 
-    for (int segundoAnguloAltura = 170; segundoAnguloAltura <= 60; segundoAnguloAltura++) { //robo sobe para a esteira
-
-      if (sistemaLigado == false) {
-        Serial.println("Base interrompida");
-        return;
-      }
-
-      servoE.write(segundoAnguloAltura);
-      delay(15);
-
-      Serial.println("Robo levantando....");
-    }
-  }
-} 
-
-void avanca() {
-
-  if( servoG.read() == 0 || servoE.read() == 60) { //robo avanca para a esteira
-
-    for (int primeiroAnguloAvanca = 105; primeiroAnguloAvanca <= 160; primeiroAnguloAvanca++) {
-
-     if (sistemaLigado == false) {
-        Serial.println("Base interrompida");
-        return;
-      }
-
-      servoD.write(primeiroAnguloAvanca);
-      delay(15);
-
-      Serial.println("Garra avançando....");
-    }
+    delay(100); 
   }
 
+  // --- PARTE 3: ESTEIRA (SENSOR 2) -> CAMINHÃO ---
+  Serial.println("Caixa detectada no Sensor 2! Levando para o caminhão...");
 
-  if (servoG.read() == 0) {
-    
-    for (int primeiroAnguloRetorna = 0; primeiroAnguloRetorna <= 105; primeiroAnguloRetorna++) { //braço retorna garra
-
-      if (sistemaLigado == false) {
-       Serial.println("Base interrompida");
-        return;
-     }
-
-      servoD.write(primeiroAnguloRetorna);
-      delay(15);
-
-      Serial.println("Garra retornando....");
-    }
-  }
+  bracoAtivo = true;      // Para a esteira para o braço agir com segurança
+  
+  moverBase(135);         // Vai até o final da esteira (Sensor 2)
+  controlarAvanco(160);   // Avança
+  controlarGarra(40);     // PEGA da esteira
+  controlarAvanco(105);   // Recolhe
+  moverBase(180);          // Gira até o Caminhão
+  controlarAltura(170);   // desce
+       
+  controlarAvanco(160);   // Avança
+  controlarGarra(0);      // SOLTA no caminhão
+  controlarAvanco(105);   // Recolhe
+  controlarAltura(60);    // Sobe
+  
+  bracoAtivo = false;     // Ciclo finalizado
+  moverBase(0);           // Volta para o início para a próxima caixa
+  Serial.println("Ciclo completo concluído!");
 }
-
-void garra() {
-
-  if ( servoE.read() == 170 || servoB.read() == 0) { //pegar a caixa do estoque
-
-    for (int primeiroAnguloGarra = 0; primeiroAnguloGarra <= 40; primeiroAnguloGarra++) {
-
-      if (sistemaLigado == false) {
-        Serial.println("Base interrompida");
-        return;
-     }
- 
-     servoG.write(primeiroAnguloGarra);
-     delay(15);
-      
-     Serial.println("Garra pegando....");
-   }
-
-    bracoAtivo = false;
- }
-
-  if ( servoE.read() == 60 || servoB.read() == 45) {
-
-    for (int primeiroAnguloGarra = 40; primeiroAnguloGarra <= 0; primeiroAnguloGarra++) { //soltar a caixa na esteira
-
-      if (sistemaLigado == false) {
-        Serial.println("Base interrompida");
-        return;
-      }
-
-      servoG.write(primeiroAnguloGarra);
-      delay(15);
-      
-      Serial.println("Garra soltando....");
-   }
-   bracoAtivo = false;
-  }
-}
-

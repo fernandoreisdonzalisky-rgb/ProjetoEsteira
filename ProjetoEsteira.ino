@@ -16,7 +16,7 @@ bool sistemaLigado = false;
 bool sensor1Ativado = false;
 bool sensor2Ativado = false;
 bool bracoAtivo = false;
-int anguloAtualBase = servoB.read();
+int etapaBraco = 0;
 
 
 // ===== MÓDULOS =====
