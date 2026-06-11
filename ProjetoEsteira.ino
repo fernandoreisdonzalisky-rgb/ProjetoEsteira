@@ -10,9 +10,13 @@ Servo servoE;
 
 Servo servoG;
 
+//====== VARIÁVEIS =======
+
 bool sistemaLigado = false;
 bool sensor1Ativado = false;
 bool sensor2Ativado = false;
+bool bracoAtivo = false;
+int anguloAtualBase = servoB.read();
 
 
 // ===== MÓDULOS =====

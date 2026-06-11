@@ -1,112 +1,219 @@
- 
-int servoBasepin = 10;
-int servoDireitapin = 11;
-int servoEsquerdapin = 12;
-int servoGarrapin = 13;
-
-void iniciaRobo() {
-
-  servoB.attach(servoBasepin);
-  servoD.attach(servoDireitapin); 
-  servoE.attach(servoEsquerdapin);
-  servoG.attach(servoGarrapin); 
-
-  servoB.write(0); //limite min base
-  servoD.write(105); //limite min avanço
-  servoE.write(60); //limite min altura
-  servoG.write(0); //limite min garra
-}
-
-void ligaRobo() {
   
-  if (sistemaLigado == false) {
-    Serial.println("Braço Desativado");
-    return;
-  }
-  
-  base(2000);
-}
+  int servoBasepin = 10;
+  int servoDireitapin = 11;
+  int servoEsquerdapin = 12;
+  int servoGarrapin = 13;
 
-void base(int espera) {
+  void iniciaRobo() {
 
-  // Vai de 0 até 65
-  for (int primeiroAnguloBase = 0; primeiroAnguloBase <= 45; primeiroAnguloBase++) {
+    servoB.attach(servoBasepin);
+    servoD.attach(servoDireitapin); 
+    servoE.attach(servoEsquerdapin);
+    servoG.attach(servoGarrapin); 
 
-    if (sistemaLigado == false) {
-      Serial.println("Base interrompida"); 
-      return;
-    }
-
-    servoB.write(primeiroAnguloBase);
-    delay(15);
-
-    Serial.println("robo indo...");
+    servoB.write(0); //limite min base
+    servoD.write(105); //limite min avanço
+    servoE.write(60); //limite min altura
+    servoG.write(0); //limite min garra
   }
 
-  delay(espera); // espera em 65 graus
-
-  // Vai de 65 até 90
-  for (int segundoAnguloBase = 45; segundoAnguloBase <= 90; segundoAnguloBase++) {
-
-    if (sistemaLigado == false) {
-      Serial.println("Base interrompida");
-      return;
-    }
-
-    servoB.write(segundoAnguloBase);
-    delay(15);
-
+  void ligaRobo() {
     
+    if (sistemaLigado == false) {
+      Serial.println("Braço Desativado");
+      return;
+    }
+    
+    base(2000);
+    avanca();
+    garra();
   }
-  Serial.println("robo parado");
+
+  void base(int espera) {
+
+    // Vai de 0 até 65
+    for (int primeiroAnguloBase = 0; primeiroAnguloBase <= 45; primeiroAnguloBase++) { //robo vai até a esteira
+
+      if (sistemaLigado == false) {
+        Serial.println("Base interrompida"); 
+        return;
+      }
+
+      servoB.write(primeiroAnguloBase);
+      delay(15);
+
+      Serial.println("robo indo...");
+
+      bracoAtivo = true;
+    }
+
+    delay(espera); // espera em 65 graus
+
+    // Vai de 65 até 90
+    for (int segundoAnguloBase = 45; segundoAnguloBase <= 90; segundoAnguloBase++) { //robo espera o sensor 2 ATIVAR
+
+      if (sistemaLigado == false) {
+        Serial.println("Base interrompida");
+        return;
+      }
+
+      servoB.write(segundoAnguloBase);
+      delay(15);
+
+      
+    }
+    
+    Serial.println("robo parado");
+    
+    delay(5000); // fica parado em 90 graus por 5 segundos
+
+
+    if (sensor2Ativado == true) { //condição para o robo ir até a esteira para pegar a caixa
+
+    // Vai de 90 até 165
+    for (int terceiroAnguloBase = 90; terceiroAnguloBase <= 135; terceiroAnguloBase++) { //robo vai até o estoque
+
+      if (sistemaLigado == false) {
+        Serial.println("Base interrompida");
+        return;
+      }
+
+      servoB.write(terceiroAnguloBase);
+      delay(15);
+
+      Serial.print("robo indo...");
+    }
+  }
+
+    delay(espera); // espera em 165 graus
+
+    // vai de 165 até 180
+    for (int quartoAnguloBase = 135; quartoAnguloBase >= 180; quartoAnguloBase++) { //robo vai até o caminhão
+
+      if (sistemaLigado == false) {
+        Serial.println("Base interrompida");
+        return;
+      }
+
+      servoB.write(quartoAnguloBase);
+      delay(15);
+
+      Serial.println("robo indo...");
+
+      bracoAtivo = true;
+    }
+
+    // vai de 180 até 0
+    for (int voltaBase = 180; voltaBase >= 0; voltaBase--) { //robo volta para o estoque
+
+      if (sistemaLigado == false) {
+        Serial.println("Base interrompida");
+        return;
+      }
+
+      servoB.write(voltaBase);
+      delay(15);
+
+      Serial.println("robo voltando...");
+
+      bracoAtivo = true;
+  }
+  }
+
+
   
-  delay(5000); // fica parado em 90 graus por 5 segundos
 
+  void altura() {
 
-  if (sensor2Ativado == true) { //condição para o robo ir até a caixa
+    if (primeiroAnguloBase == 45) {
 
-  // Vai de 90 até 165
-  for (int terceiroAnguloBase = 90; terceiroAnguloBase <= 135; terceiroAnguloBase++) {
+        for (int segundoAnguloAltura = 60; segundoAnguloAltura <= 170; segundoAnguloAltura++) { //robo sobe para a esteira
 
-    if (sistemaLigado == false) {
-      Serial.println("Base interrompida");
-      return;
+      if (sistemaLigado == false) {
+        Serial.println("Base interrompida");
+        return;
+      }
+
+      servoE.write(segundoAnguloAltura);
+      delay(15);
+
+      Serial.println("Robo levantando....");
     }
-
-    servoB.write(terceiroAnguloBase);
-    delay(15);
-
-    Serial.print("robo indo...");
   }
- }
-
-  delay(espera); // espera em 165 graus
-
-  // vai de 165 até 180
-  for (int quartoAngulobase = 135; quartoAngulobase >= 180; quartoAngulobase++) {
-
-    if (sistemaLigado == false) {
-      Serial.println("Base interrompida");
-      return;
-    }
-
-    servoB.write(quartoAngulobase);
-    delay(15);
-
-    Serial.println("robo indo...");
   }
 
-  // vai de 180 até 0
-  for (int voltaBase = 180; voltaBase >= 0; voltaBase--) {
+  void avanca(){
 
-    if (sistemaLigado == false) {
-      Serial.println("Base interrompida");
-      return;
+    if( primeiroAnguloGarra == 0 || segundoAnguloAltura == 170) { //robo avanca para a esteira
+
+    for (int primeiroAnguloAvanca = 105; primeiroAnguloAvanca <= 160; primeiroAnguloAvanca++) {
+
+      if (sistemaLigado == false) {
+        Serial.println("Base interrompida");
+        return;
+      }
+
+      servoD.write(primeiroAnguloAvanca);
+      delay(15);
+
+      Serial.println("Garra avançando....");
+    }
     }
 
-    servoB.write(voltaBase);
-    delay(15);
+    if (primeirAnguloGarra == 40) {
+    
+    for (int primeiroAnguloRetorna = 0; primeiroAnguloRetorna <= 105; primeiroAnguloRetorna++) { //braço retorna garra
 
-    Serial.println("robo voltando...");
+      if (sistemaLigado == false) {
+        Serial.println("Base interrompida");
+        return;
+      }
+
+      servoD.write(primeiroAnguloRetorna);
+      delay(15);
+
+      Serial.println("Garra retornando....");
+    }
   }
-}
+  }
+
+  void garra() {
+
+    if ( anguloAltura == 60 || primeiroAnguloBase == 0) { //pegar a caixa do estoque
+
+  for (int primeiroAnguloGarra = 0; primeiroAnguloGarra <= 40; primeiroAnguloGarra++) {
+
+      if (sistemaLigado == false) {
+        Serial.println("Base interrompida");
+        return;
+      }
+
+      servoG.write(primeiroAnguloGarra);
+      delay(15);
+      
+      Serial.println("Garra pegando....");
+    }
+
+    bracoAtivo = false;
+  }
+
+    if ( anguloAltura == 160 || primeiroAnguloBase == 45) {
+
+  for (int primeiroAnguloGarra = 40; primeiroAnguloGarra <= 0; primeiroAnguloGarra++) { //soltar a caixa na esteira
+
+      if (sistemaLigado == false) {
+        Serial.println("Base interrompida");
+        return;
+      }
+
+      servoG.write(primeiroAnguloGarra);
+      delay(15);
+      
+      Serial.println("Garra soltando....");
+    }
+
+    bracoAtivo = false;
+    }
+  }
+  }
+
