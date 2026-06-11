@@ -76,9 +76,13 @@ void controlarGarra(int anguloDestino) {
 
 // Funções para Altura (E) e Avanço (D) seguindo o mesmo padrão suave
 void controlarAltura(int anguloDestino) {
+
   int atual = servoE.read();
+
   if (atual < anguloDestino) {
+
     for (int e = atual; e <= anguloDestino; e++) {
+
       if (!sistemaLigado) return;
       servoE.write(e);
       delay(15);
@@ -107,11 +111,11 @@ void controlarAvanco(int anguloDestino) {
     }
  } else {
 
-    for (int i = atual; i >= anguloDestino; i--) {
+    for (int d = atual; d >= anguloDestino; d--) {
 
       if (!sistemaLigado) return;
 
-      servoD.write(i);
+      servoD.write(d);
       delay(15);
     }
   }

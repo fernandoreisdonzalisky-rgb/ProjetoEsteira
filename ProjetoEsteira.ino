@@ -41,10 +41,15 @@ void botaoDesliga();
 
 void ligaRobo();
 
-void base(int espera = 0);
+void moverBase(int anguloDestino);
 
-void garra();
+void controlarGarra(int anguloDestino);
 
+void controlarAltura(int anguloDestino);
+
+void controlarAvanco(int anguloDestino);
+
+void executarCicloCompleto() ;
 
 // ===== INICIALIZAÇÃO =====
 
