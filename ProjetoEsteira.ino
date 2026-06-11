@@ -43,6 +43,7 @@ void ligaRobo();
 
 void base(int espera = 0);
 
+void garra();
 
 
 // ===== INICIALIZAÇÃO =====
