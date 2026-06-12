@@ -6,16 +6,16 @@
 
 void iniciaRobo() {
 
-    servoB.attach(servoBasepin);
-    servoD.attach(servoDireitapin); 
-    servoE.attach(servoEsquerdapin);
-    servoG.attach(servoGarrapin); 
+  servoB.attach(servoBasepin);
+  servoD.attach(servoDireitapin); 
+  servoE.attach(servoEsquerdapin);
+  servoG.attach(servoGarrapin); 
 
-    servoB.write(0); //limite min Base
-    servoD.write(105); //limite min Avanço
-    servoE.write(60); //limite min Altura
-    servoG.write(0); //limite min Garra
-  }
+  servoB.write(0); //limite min Base
+  servoD.write(105); //limite min Avanço
+  servoE.write(60); //limite min Altura
+  servoG.write(0); //limite min Garra
+}
 
 
 // --- FUNÇÕES DE MOVIMENTO BÁSICO (Músculos) ---
