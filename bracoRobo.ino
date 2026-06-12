@@ -142,7 +142,6 @@ void executarCicloRobo() {
   Serial.println("Aguardando caixa chegar no Sensor 2...");
 
   while (sensor2Ativado == false) { // Enquanto NÃO chegar no sensor 2
-    if (!sistemaLigado) return;
 
     delay(100); 
   }
@@ -163,8 +162,9 @@ void executarCicloRobo() {
   controlarGarra(0);      // SOLTA no caminhão
   controlarAvanco(105);   // Recolhe
   controlarAltura(60);    // Sobe
-  
-  bracoAtivo = false;     // Ciclo finalizado
-  moverBase(0);           // Volta para o início para a próxima caixa
+
+  moverBase(0);      
+  bracoAtivo = false;   // Ciclo finalizado
+   // Volta para o início para a próxima caixa
   Serial.println("Ciclo completo concluído!");
 }
