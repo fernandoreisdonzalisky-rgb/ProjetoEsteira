@@ -30,7 +30,7 @@ void verificarSensor1() {
 
     desligarEsteira();
 
-    abrirFunil(1000);
+    abrirFunil(3000);
 
     fecharFunil(1000);
 

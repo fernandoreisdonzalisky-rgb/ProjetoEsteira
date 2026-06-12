@@ -13,43 +13,51 @@ void iniciaFunil() {
 
 void abrirFunil(int espera) {
 
-  Serial.print("Posicao atual servo: ");
-  Serial.println(Fservo.read());
-
   if (funilAberto == false) {
-
     Serial.println("Abrindo funil...");
+    
+    int atual = Fservo.read();
+    int destino = 90;
 
-    delay(espera);
+    // Movimento suave de abertura
+    if (atual < destino) {
+      for (int i = atual; i <= destino; i++) {
 
-    Fservo.write(90);
+        if (!sistemaLigado) return;
 
-    Serial.print("Nova posicao servo: ");
-    Serial.println(Fservo.read());
+        delay(espera); //espera o robo colocar a caixa
+        Fservo.write(i);
+
+        delay(15); // Ajusta a velocidade da abertura
+      }      
+    }
 
     funilAberto = true;
-
-    delay(espera);
+    Serial.println("Funil aberto.");
   }
 }
 
 void fecharFunil(int espera) {
-
-  Serial.print("Posicao atual servo: ");
-  Serial.println(Fservo.read());
-
+  
   if (funilAberto == true) {
-
     Serial.println("Fechando funil...");
 
-    Fservo.write(0);
+    int atual = Fservo.read();
+    int destino = 0;
 
-    Serial.print("Nova posicao servo: ");
-    Serial.println(Fservo.read());
+    // Movimento suave de fechamento
+    if (atual > destino) {
+      for (int i = atual; i >= destino; i--) {
+
+        if (!sistemaLigado) return;
+        Fservo.write(i);
+        delay(15); // Ajusta a velocidade do fechamento
+      }
+    }
 
     funilAberto = false;
-
-     delay(espera);
+    Serial.println("Funil fechado.");
+    delay(espera); // Espera após fechar
   }
 }
 

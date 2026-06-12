@@ -17,15 +17,6 @@ void iniciaRobo() {
     servoG.write(0); //limite min Garra
   }
 
-void ligaRobo() {
-    
-    if (sistemaLigado == false) {
-      Serial.println("Braço Desativado");
-      return;
-    }
-    
-    
-  }
 
 // --- FUNÇÕES DE MOVIMENTO BÁSICO (Músculos) ---
 // Estas funções garantem o movimento suave para qualquer ângulo
@@ -123,7 +114,7 @@ void controlarAvanco(int anguloDestino) {
 
 // --- FUNÇÕES DE AÇÃO COMPOSTA (Tarefas) ---
 
-void executarCicloCompleto() {
+void executarCicloRobo() {
 
   if (sistemaLigado == false) return;
 
@@ -140,6 +131,7 @@ void executarCicloCompleto() {
   
   moverBase(45);          // Vai para o início da Esteira
   controlarAvanco(160);   // Avança
+  bracoAtivo = false;     // Libera o sensor para parar a esteira e abrir funil
   controlarGarra(0);      // SOLTA na esteira
   controlarAvanco(105);   // Recolhe
   
@@ -162,7 +154,7 @@ void executarCicloCompleto() {
   
   moverBase(135);         // Vai até o final da esteira (Sensor 2)
   controlarAvanco(160);   // Avança
-  controlarGarra(40);     // PEGA da esteira
+  controlarGarra(40);     // PEGA a caixa da esteira
   controlarAvanco(105);   // Recolhe
   moverBase(180);          // Gira até o Caminhão
   controlarAltura(170);   // desce

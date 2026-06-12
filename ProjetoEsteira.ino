@@ -39,8 +39,6 @@ void botaoLiga();
 
 void botaoDesliga();
 
-void ligaRobo();
-
 void moverBase(int anguloDestino);
 
 void controlarGarra(int anguloDestino);
@@ -49,7 +47,7 @@ void controlarAltura(int anguloDestino);
 
 void controlarAvanco(int anguloDestino);
 
-void executarCicloCompleto() ;
+void executarCicloRobo() ;
 
 // ===== INICIALIZAÇÃO =====
 

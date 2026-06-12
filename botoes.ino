@@ -18,7 +18,7 @@ void botaoLiga() {
 
     ligarEsteira();
 
-    ligaRobo();
+    executarCicloRobo();
 
     Serial.println("Sistema LIGADO");
 
