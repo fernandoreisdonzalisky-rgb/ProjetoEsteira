@@ -65,7 +65,7 @@ void controlarGarra(int anguloDestino) {
   }
 }
 
-// Funções para Altura (E) e Avanço (D) seguindo o mesmo padrão suave
+// Funções para Altura (E) e Avanço (D)
 void controlarAltura(int anguloDestino) {
 
   int atual = servoE.read();

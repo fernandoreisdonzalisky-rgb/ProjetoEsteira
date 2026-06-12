@@ -16,15 +16,16 @@ void abrirFunil(int destino,int espera) {
   if (funilAberto == false) {
     Serial.println("Abrindo funil...");
     
+    delay(espera);
+    
     int atual = Fservo.read();
 
     // Movimento suave de abertura
     if (atual < destino) {
+
       for (int i = atual; i <= destino; i++) {
 
         if (!sistemaLigado) return;
-
-        delay(espera); //espera o robo colocar a caixa
         Fservo.write(i);
 
         delay(15); // Ajusta a velocidade da abertura
