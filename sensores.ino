@@ -30,9 +30,9 @@ void verificarSensor1() {
 
     desligarEsteira();
 
-    abrirFunil(3000);
+    abrirFunil(90,3000); //ângulo e delay
 
-    fecharFunil(1000);
+    fecharFunil(0,1000); //ângulo e delay
 
     ligarEsteira(1000);
 

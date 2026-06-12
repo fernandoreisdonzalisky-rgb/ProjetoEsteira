@@ -11,13 +11,12 @@ void iniciaFunil() {
   Fservo.write(0);
 }
 
-void abrirFunil(int espera) {
+void abrirFunil(int destino,int espera) {
 
   if (funilAberto == false) {
     Serial.println("Abrindo funil...");
     
     int atual = Fservo.read();
-    int destino = 90;
 
     // Movimento suave de abertura
     if (atual < destino) {
@@ -37,13 +36,12 @@ void abrirFunil(int espera) {
   }
 }
 
-void fecharFunil(int espera) {
+void fecharFunil(int destino,int espera) {
   
   if (funilAberto == true) {
     Serial.println("Fechando funil...");
 
     int atual = Fservo.read();
-    int destino = 0;
 
     // Movimento suave de fechamento
     if (atual > destino) {

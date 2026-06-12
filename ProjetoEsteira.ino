@@ -25,11 +25,11 @@ void ligarEsteira(int espera = 0);
 
 void desligarEsteira(int espera = 0);
 
-void abrirFunil(int espera = 0);
+void abrirFunil(int destino,int espera = 0);
 
 bool funilAtivo();
 
-void fecharFunil(int espera = 0);
+void fecharFunil(int destino,int espera = 0);
 
 void verificarSensor1();
 
@@ -47,18 +47,7 @@ void controlarAltura(int anguloDestino);
 
 void controlarAvanco(int anguloDestino);
 
-void executarCicloRobo() ;
-
-// ===== INICIALIZAÇÃO =====
-
-void iniciaPonteH();
-
-void iniciaFunil();
-
-void iniciaSensores();
-
-void iniciaBotao();
-
+void executarCicloRobo();
 
 
 // ===== SETUP =====
@@ -75,6 +64,7 @@ void setup() {
 
   iniciaBotao();
 
+  iniciaRobo();
 }
 
 // ===== LOOP =====
@@ -88,5 +78,7 @@ void loop() {
   verificarSensor1();
 
   verificarSensor2();
+
+  executarCicloRobo();
 
 }
