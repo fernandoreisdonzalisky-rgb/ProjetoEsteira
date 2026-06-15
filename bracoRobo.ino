@@ -12,8 +12,8 @@ void iniciaRobo() {
   servoG.attach(servoGarrapin); 
 
   servoB.write(180); //limite min Base
-  servoD.write(105); //limite min Altura
-  servoE.write(0); //limite min Avanço
+  servoD.write(0); //limite min Altura
+  servoE.write(105); //limite min Avanço
   servoG.write(0); //limite min Garra
 }
 
