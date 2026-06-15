@@ -12,8 +12,8 @@ void iniciaRobo() {
   servoG.attach(servoGarrapin); 
 
   servoB.write(180); //limite min Base
-  servoD.write(105); //limite min Avanço
-  servoE.write(0); //limite min Altura
+  servoD.write(105); //limite min Altura
+  servoE.write(0); //limite min Avanço
   servoG.write(0); //limite min Garra
 }
 
@@ -68,21 +68,21 @@ void controlarGarra(int anguloDestino) {
 // Funções para Altura (E) e Avanço (D)
 void controlarAltura(int anguloDestino) {
 
-  int atual = servoE.read();
+  int atual = servoD.read();
 
   if (atual < anguloDestino) {
 
     for (int e = atual; e <= anguloDestino; e++) {
 
       if (!sistemaLigado) return;
-      servoE.write(e);
+      servoD.write(e);
       delay(15);
     }
   } else {
     for (int e = atual; e >= anguloDestino; e--) {
 
       if (!sistemaLigado) return;
-      servoE.write(e);
+      servoD.write(e);
       delay(15);
     }
   }
@@ -90,14 +90,14 @@ void controlarAltura(int anguloDestino) {
 
 void controlarAvanco(int anguloDestino) {
 
-  int atual = servoD.read();
+  int atual = servoE.read();
 
   if (atual < anguloDestino) {
 
     for (int d = atual; d <= anguloDestino; d++) {
 
       if (!sistemaLigado) return;
-      servoD.write(d);
+      servoE.write(d);
       delay(15);
     }
  } else {
@@ -106,7 +106,7 @@ void controlarAvanco(int anguloDestino) {
 
       if (!sistemaLigado) return;
 
-      servoD.write(d);
+      servoE.write(d);
       delay(15);
     }
   }
