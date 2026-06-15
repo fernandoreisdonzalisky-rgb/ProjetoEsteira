@@ -12,7 +12,7 @@ const int pinoServoDireita = 5;  // Pino PWM
 const int pinoServoEsquerda = 6; // Pino PWM
 const int pinoServoGarra = 9;    // Pino PWM
 
-const int pinoPot = A0;          // Pino Analógico do Arduino
+const int pinoPot = A1;          // Pino Analógico do Arduino
 
 int anguloBase = 0;
 int anguloDireita = 0;
