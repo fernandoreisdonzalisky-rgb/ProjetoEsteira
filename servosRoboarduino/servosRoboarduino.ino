@@ -13,7 +13,8 @@ const int pinoServoEsquerda = 6; // Pino PWM
 const int pinoServoGarra = 9;    // Pino PWM
 
 const int pinoPot = A1;        // Pino Analógico do Arduino
-int incremento = 1;          
+int incremento = 1;    
+int velocidadeServo = 15;       
 
 int posBase= 90;
 int posDireita = 90;

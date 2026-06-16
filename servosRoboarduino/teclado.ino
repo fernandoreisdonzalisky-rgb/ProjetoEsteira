@@ -1,4 +1,20 @@
 
+void moveServoSmoothly(Servo& servo, int targetPos, int& currentPos, int delayTime) {
+  if (targetPos > currentPos) {
+    for (int i = currentPos; i <= targetPos; i++) {
+      servo.write(i);
+      delay(delayTime);
+    }
+  } else if (targetPos < currentPos) {
+    for (int i = currentPos; i >= targetPos; i--) {
+      servo.write(i);
+      delay(delayTime);
+    }
+  }
+  currentPos = targetPos; // Atualiza a posição atual para a alvo
+}
+
+
 void iniciacontrole(){
   Serial.begin(9600); // Inicia a comunicação serial a 9600 bps
 
@@ -33,60 +49,61 @@ void iniciacontrole(){
   if (Serial.available() > 0) { // Verifica se há dados disponíveis na serial
     char comando = Serial.read(); // Lê o caractere recebido
 
+    int novaPosicao;
+
     switch (comando) {
       // --- Controle do Servo da Base ---
       case 'q':
-        posBase += incremento;
-        if (posBase > 180) posBase = 180;
-        servoB.write(posBase);
+        novaPosicao = posBase + incremento;
+        if (novaPosicao > 180) novaPosicao = 180;
+        moveServoSmoothly(servoB, novaPosicao, posBase, velocidadeServo);
         Serial.println("Base: " + String(posBase));
         break;
       case 'a':
-        posBase -= incremento;
-        if (posBase < 0) posBase = 0;
-        servoB.write(posBase);
+        novaPosicao = posBase - incremento;
+        if (novaPosicao < 0) novaPosicao = 0;
+        moveServoSmoothly(servoB, novaPosicao, posBase, velocidadeServo);
         Serial.println("Base: " + String(posBase));
         break;
 
       // --- Controle do Servo da Direita ---
       case 'w':
-        posDireita += incremento;
-        if (posDireita > 180) posDireita = 180;
-        servoD.write(posDireita);
+        novaPosicao = posDireita + incremento;
+        if (novaPosicao > 180) novaPosicao = 180;
+        moveServoSmoothly(servoD, novaPosicao, posDireita, velocidadeServo);
         Serial.println("Direita: " + String(posDireita));
         break;
       case 's':
-        posDireita -= incremento;
-        if (posDireita < 0) posDireita = 0;
-        servoD.write(posDireita);
+        novaPosicao = posDireita - incremento;
+        if (novaPosicao < 0) novaPosicao = 0;
+        moveServoSmoothly(servoD, novaPosicao, posDireita, velocidadeServo);
         Serial.println("Direita: " + String(posDireita));
         break;
 
       // --- Controle do Servo da Esquerda ---
       case 'e':
-        posEsquerda += incremento;
-        if (posEsquerda > 180) posEsquerda = 180;
-        servoE.write(posEsquerda);
+        novaPosicao = posEsquerda + incremento;
+        if (novaPosicao > 180) novaPosicao = 180;
+        moveServoSmoothly(servoE, novaPosicao, posEsquerda, velocidadeServo);
         Serial.println("Esquerda: " + String(posEsquerda));
         break;
       case 'd':
-        posEsquerda -= incremento;
-        if (posEsquerda < 0) posEsquerda = 0;
-        servoE.write(posEsquerda);
+        novaPosicao = posEsquerda - incremento;
+        if (novaPosicao < 0) novaPosicao = 0;
+        moveServoSmoothly(servoE, novaPosicao, posEsquerda, velocidadeServo);
         Serial.println("Esquerda: " + String(posEsquerda));
         break;
 
-      // --- Controle do Servo da Garra ---
-      case 'r':
-        posGarra += incremento;
-        if (posGarra > 180) posGarra = 180;
-        servoG.write(posGarra);
+      // --- Controle do Servo da Garra ---\n      case 'r':
+        novaPosicao = posGarra + incremento;
+        if (novaPosicao > 180) novaPosicao = 180;
+        moveServoSmoothly(servoG, novaPosicao, posGarra, velocidadeServo);
         Serial.println("Garra: " + String(posGarra));
         break;
       case 'f':
-        posGarra -= incremento;
-        if (posGarra < 0) posGarra = 0;
-        servoG.write(posGarra);
+        novaPosicao = posGarra - incremento;
+        if (novaPosicao < 0) novaPosicao = 0;
+        moveServoSmoothly(servoG, novaPosicao, posGarra, velocidadeServo);
         Serial.println("Garra: " + String(posGarra));
         break;
 
@@ -99,5 +116,4 @@ void iniciacontrole(){
         break;
     }
   }
-  delay(10); // Pequeno atraso para estabilidade
  }
