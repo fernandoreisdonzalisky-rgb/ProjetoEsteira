@@ -25,12 +25,12 @@ void setup() {
   Serial.begin(9600); // Inicializa a comunicação serial obrigatória para o monitor
   iniciaServos();
   iniciacontrole();
-  controle();
+  
 }
 
 void loop() {
   testaServos();
- controle();
+ controle();   
   
 }
 
