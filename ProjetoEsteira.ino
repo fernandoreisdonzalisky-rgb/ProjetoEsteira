@@ -71,6 +71,8 @@ void setup() {
 
 void loop() {
 
+  verificarTeclado();
+   
   botaoLiga();
 
   botaoDesliga();
