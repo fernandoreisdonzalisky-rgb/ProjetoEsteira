@@ -30,7 +30,7 @@ void setup() {
 
 void loop() {
   testaServos();
-
+ controle();
   
 }
 
