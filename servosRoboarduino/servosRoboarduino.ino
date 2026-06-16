@@ -12,16 +12,19 @@ const int pinoServoDireita = 5;  // Pino PWM
 const int pinoServoEsquerda = 6; // Pino PWM
 const int pinoServoGarra = 9;    // Pino PWM
 
-const int pinoPot = A1;          // Pino Analógico do Arduino
+const int pinoPot = A1;        // Pino Analógico do Arduino
+int incremento = 1;          
 
-int anguloBase = 0;
-int anguloDireita = 0;
-int anguloEsquerda = 0;
-int anguloGarra = 0;
+int posBase= 90;
+int posDireita = 90;
+int posEsquerda = 90;
+int posGarra = 90;
 
 void setup() {
   Serial.begin(9600); // Inicializa a comunicação serial obrigatória para o monitor
   iniciaServos();
+  iniciacontrole();
+  controle();
 }
 
 void loop() {
@@ -45,30 +48,30 @@ void testaServos() {
   int leituraPot = analogRead(pinoPot);
 
   // Ajustado de 4095 (ESP32) para 1023 (Arduino)
-  anguloBase = map(leituraPot, 0, 1023, 0, 180);
-  anguloDireita = map(leituraPot, 0, 1023, 105, 180);
-  anguloEsquerda = map(leituraPot, 0, 1023, 60, 180);
-  anguloGarra = map(leituraPot, 0, 1023, 0, 40);
+  posBase= map(leituraPot, 0, 1023, 0, 180);
+  posDireita = map(leituraPot, 0, 1023, 105, 180);
+  posEsquerda = map(leituraPot, 0, 1023, 60, 180);
+  posGarra = map(leituraPot, 0, 1023, 0, 40);
 
-  servoB.write(anguloBase);
-  servoD.write(anguloDireita);
-  servoE.write(anguloEsquerda);
-  servoG.write(anguloGarra);
+  servoB.write(posBase);
+  servoD.write(posDireita);
+  servoE.write(posEsquerda);
+  servoG.write(posGarra);
 
   Serial.print("Pot: ");
   Serial.print(leituraPot);
 
   Serial.print(" | Base: ");
-  Serial.print(anguloBase);
+  Serial.print(posBase);
 
   Serial.print(" | Direita: ");
-  Serial.print(anguloDireita);
+  Serial.print(posDireita);
 
   Serial.print(" | Esquerda: ");
-  Serial.print(anguloEsquerda);
+  Serial.print(posEsquerda);
 
   Serial.print(" | Garra: ");
-  Serial.println(anguloGarra);
+  Serial.println(posGarra);
 
   delay(20);
 
