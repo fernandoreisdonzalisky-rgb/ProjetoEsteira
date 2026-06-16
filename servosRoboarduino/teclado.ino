@@ -94,7 +94,7 @@ void iniciacontrole(){
         Serial.println("Esquerda: " + String(posEsquerda));
         break;
 
-      // --- Controle do Servo da Garra ---\n      case 'r':
+      // --- Controle do Servo da Garra ---
         novaPosicao = posGarra + incremento;
         if (novaPosicao > 180) novaPosicao = 180;
         moveServoSmoothly(servoG, novaPosicao, posGarra, velocidadeServo);
