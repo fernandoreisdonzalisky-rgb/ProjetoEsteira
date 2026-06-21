@@ -14,7 +14,7 @@ void iniciaPonteH() {
 
 // ===== LIGA ESTEIRA =====
 
-void ligarEsteira(int espera = 0) {
+void ligarEsteira(int espera) {
 
   delay(espera);
 
@@ -29,7 +29,7 @@ void ligarEsteira(int espera = 0) {
 
 // ===== DESLIGA ESTEIRA =====
 
-void desligarEsteira(int espera = 0) {
+void desligarEsteira(int espera) {
 
   delay(espera);
 

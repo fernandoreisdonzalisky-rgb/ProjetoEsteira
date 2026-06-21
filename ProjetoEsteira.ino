@@ -1,14 +1,38 @@
+<<<<<<< HEAD
+=======
+#include <Servo.h>
+
+Servo Fservo;
+
+Servo servoB;
+
+Servo servoD;
+
+Servo servoE;
+
+Servo servoG;
+
+//====== VARIÁVEIS =======
+
+bool sistemaLigado = false;
+bool sensor1Ativado = false;
+bool sensor2Ativado = false;
+bool bracoAtivo = false;
+int etapaBraco = 0;
+
+
+>>>>>>> 38f97a93b61be7c46912817783862fc2f49e2969
 // ===== MÓDULOS =====
 
 void ligarEsteira(int espera = 0);
 
 void desligarEsteira(int espera = 0);
 
-void abrirFunil(int espera = 0);
+void abrirFunil(int destino,int espera = 0);
 
 bool funilAtivo();
 
-void fecharFunil(int espera = 0);
+void fecharFunil(int destino,int espera = 0);
 
 void verificarSensor1();
 
@@ -18,19 +42,15 @@ void botaoLiga();
 
 void botaoDesliga();
 
+void moverBase(int anguloDestino);
 
+void controlarGarra(int anguloDestino);
 
+void controlarAltura(int anguloDestino);
 
-// ===== INICIALIZAÇÃO =====
+void controlarAvanco(int anguloDestino);
 
-void iniciaPonteH();
-
-void iniciaFunil();
-
-void iniciaSensores();
-
-void iniciaBotao();
-
+void executarCicloRobo();
 
 
 // ===== SETUP =====
@@ -47,12 +67,15 @@ void setup() {
 
   iniciaBotao();
 
+  iniciaRobo();
 }
 
 // ===== LOOP =====
 
 void loop() {
 
+  verificarTeclado();
+   
   botaoLiga();
 
   botaoDesliga();
@@ -60,5 +83,7 @@ void loop() {
   verificarSensor1();
 
   verificarSensor2();
+
+  executarCicloRobo();
 
 }

@@ -1,7 +1,6 @@
 int botaoliga = 5;
 int botaodesliga = 6;
 
-bool sistemaLigado = true;
 
 void iniciaBotao() {
 
@@ -19,9 +18,11 @@ void botaoLiga() {
 
     ligarEsteira();
 
+    executarCicloRobo();
+
     Serial.println("Sistema LIGADO");
 
-    delay(500);
+    delay(1000);
   }
 }
 
@@ -38,6 +39,6 @@ void botaoDesliga() {
 
     Serial.println("Sistema DESLIGADO");
 
-    delay(500);
+    delay(1000);
   }
 }

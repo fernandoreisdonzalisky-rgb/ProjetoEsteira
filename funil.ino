@@ -1,7 +1,3 @@
-#include <Servo.h>
-
-Servo Fservo;
-
 int servoPin = 9;
 
 //ESTADO DO FUNIL
@@ -15,45 +11,52 @@ void iniciaFunil() {
   Fservo.write(0);
 }
 
-void abrirFunil(int espera = 0) {
-
-  Serial.print("Posicao atual servo: ");
-  Serial.println(Fservo.read());
+void abrirFunil(int destino,int espera) {
 
   if (funilAberto == false) {
-
     Serial.println("Abrindo funil...");
-
+    
     delay(espera);
+    
+    int atual = Fservo.read();
 
-    Fservo.write(90);
+    // Movimento suave de abertura
+    if (atual < destino) {
 
-    Serial.print("Nova posicao servo: ");
-    Serial.println(Fservo.read());
+      for (int i = atual; i <= destino; i++) {
+
+        if (!sistemaLigado) return;
+        Fservo.write(i);
+
+        delay(15); // Ajusta a velocidade da abertura
+      }      
+    }
 
     funilAberto = true;
-
-    delay(espera);
+    Serial.println("Funil aberto.");
   }
 }
 
-void fecharFunil(int espera = 0) {
-
-  Serial.print("Posicao atual servo: ");
-  Serial.println(Fservo.read());
-
+void fecharFunil(int destino,int espera) {
+  
   if (funilAberto == true) {
-
     Serial.println("Fechando funil...");
 
-    Fservo.write(0);
+    int atual = Fservo.read();
 
-    Serial.print("Nova posicao servo: ");
-    Serial.println(Fservo.read());
+    // Movimento suave de fechamento
+    if (atual > destino) {
+      for (int i = atual; i >= destino; i--) {
+
+        if (!sistemaLigado) return;
+        Fservo.write(i);
+        delay(15); // Ajusta a velocidade do fechamento
+      }
+    }
 
     funilAberto = false;
-
-     delay(espera);
+    Serial.println("Funil fechado.");
+    delay(espera); // Espera após fechar
   }
 }
 
