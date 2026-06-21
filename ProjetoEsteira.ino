@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 #include <Servo.h>
 
 Servo Fservo;
@@ -21,7 +20,6 @@ bool bracoAtivo = false;
 int etapaBraco = 0;
 
 
->>>>>>> 38f97a93b61be7c46912817783862fc2f49e2969
 // ===== MÓDULOS =====
 
 void ligarEsteira(int espera = 0);
