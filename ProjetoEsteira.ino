@@ -1,8 +1,3 @@
-#include <Servo.h>
-
-Servo Fservo;
-
-
 // ===== MÓDULOS =====
 
 void ligarEsteira(int espera = 0);
