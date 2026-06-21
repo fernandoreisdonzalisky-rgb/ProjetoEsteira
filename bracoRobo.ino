@@ -12,8 +12,8 @@ void iniciaRobo() {
   servoG.attach(servoGarrapin); 
 
   servoB.write(180); //limite min Base
-  servoD.write(0); //limite min Altura
-  servoE.write(105); //limite min Avanço
+  servoD.write(90); //limite min Altura
+  servoE.write(100); //limite min Avanço
   servoG.write(0); //limite min Garra
 }
 
@@ -123,11 +123,11 @@ void executarCicloRobo() {
   bracoAtivo = true;
   
   moverBase(180);           // Vai no Estoque
-  controlarAltura(180);   // Abaixa
-  controlarAvanco(160);   // Avança
+  controlarAltura(140);   // Abaixa
+  controlarAvanco(120);   // Avança
   controlarGarra(40);     // PEGA
-  controlarAvanco(105);   // Recolhe
-  controlarAltura(0);    // Sobe
+  controlarAvanco(60);   // Recolhe
+  controlarAltura(105);    // Sobe
   
   moverBase(135);          // Vai para o início da Esteira
   controlarAvanco(160);   // Avança
@@ -136,7 +136,7 @@ void executarCicloRobo() {
   controlarAvanco(105);   // Recolhe
   
   bracoAtivo = false;     // Libera a esteira para levar a caixa
-  moverBase(90);          // Fica em posição de espera no meio
+  moverBase(95);          // Fica em posição de espera no meio
 
   // --- PARTE 2: ESPERAR CHEGAR NO SENSOR 2 ---
   Serial.println("Aguardando caixa chegar no Sensor 2...");
@@ -152,16 +152,16 @@ void executarCicloRobo() {
   bracoAtivo = true;      // Para a esteira para o braço agir com segurança
   
   moverBase(45);         // Vai até o final da esteira (Sensor 2)
-  controlarAvanco(160);   // Avança
+  controlarAvanco(120);   // Avança
   controlarGarra(40);     // PEGA a caixa da esteira
   controlarAvanco(105);   // Recolhe
   moverBase(0);          // Gira até o Caminhão
   controlarAltura(170);   // desce
        
-  controlarAvanco(160);   // Avança
+  controlarAvanco(120);   // Avança
   controlarGarra(0);      // SOLTA no caminhão
   controlarAvanco(105);   // Recolhe
-  controlarAltura(60);   // Sobe
+  controlarAltura(90);   // Sobe
   
   moverBase(180);      
   bracoAtivo = false;   // Ciclo finalizado
