@@ -16,13 +16,9 @@ void botaoLiga() {
 
     sistemaLigado = true;
 
-    ligarEsteira();
-
-    executarCicloRobo();
-
     Serial.println("Sistema LIGADO");
 
-    delay(1000);
+    delay(500);
   }
 }
 
