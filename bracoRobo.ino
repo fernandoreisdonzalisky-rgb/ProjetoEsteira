@@ -131,8 +131,8 @@ void executarCicloRobo() {
   
   moverBase(135);          // Vai para o início da Esteira
   controlarAvanco(160);   // Avança
-  bracoAtivo = false;     // Libera o sensor para parar a esteira e abrir funil
   controlarGarra(0);      // SOLTA na esteira
+  bracoAtivo = false;     // Libera o sensor para parar a esteira e abrir funil
   controlarAvanco(105);   // Recolhe
 
   verificarSensor1(); //verificação do sensor 1 para a ação do funil
@@ -140,10 +140,15 @@ void executarCicloRobo() {
   bracoAtivo = false;     // Libera a esteira para levar a caixa
   moverBase(95);          // Fica em posição de espera no meio
 
+
   // --- PARTE 2: ESPERAR CHEGAR NO SENSOR 2 ---
   Serial.println("Aguardando caixa chegar no Sensor 2...");
 
   while (sensor2Ativado == false) { // Enquanto NÃO chegar no sensor 2
+
+   verificarSensor2(); //chama o sensor2
+
+  if (!sistemaLigado) return;
 
     delay(100); 
   }
