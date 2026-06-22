@@ -30,11 +30,11 @@ void verificarSensor1() {
 
     desligarEsteira();
 
-    abrirFunil(90,3000); //ângulo e delay
+    abrirFunil(90,2000); //ângulo e delay
 
     fecharFunil(0,1000); //ângulo e delay
 
-    ligarEsteira(1000);
+    ligarEsteira(0); //delay
 
     Serial.println("Leitura1 realizada");
   }

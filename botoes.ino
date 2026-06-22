@@ -1,16 +1,16 @@
-int botaoLiga = 5;
-int botaoDesliga = 6;
+int pinoBotaoLiga = 5;
+int pinoBotaoDesliga = 6;
 
 
 void iniciaBotao() {
 
-  pinMode(botaoLiga, INPUT_PULLUP);
-  pinMode(botaoDesliga, INPUT_PULLUP);
+  pinMode(pinoBotaoLiga, INPUT_PULLUP);
+  pinMode(pinoBotaoDesliga, INPUT_PULLUP);
 }
 
 void botaoLiga() {
 
-  int estadoliga = digitalRead(botaoLiga);
+  int estadoliga = digitalRead(pinoBotaoLiga);
 
   if (estadoliga == LOW) {
 
@@ -25,7 +25,7 @@ void botaoLiga() {
 
 void botaoDesliga() {
 
-  int estadodesliga = digitalRead(botaoDesliga);
+  int estadodesliga = digitalRead(pinoBotaoDesliga);
 
   if (estadodesliga == LOW) {
 

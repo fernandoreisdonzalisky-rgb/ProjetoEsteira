@@ -134,6 +134,8 @@ void executarCicloRobo() {
   bracoAtivo = false;     // Libera o sensor para parar a esteira e abrir funil
   controlarGarra(0);      // SOLTA na esteira
   controlarAvanco(105);   // Recolhe
+
+  verificarSensor1(); //verificação do sensor 1 para a ação do funil
   
   bracoAtivo = false;     // Libera a esteira para levar a caixa
   moverBase(95);          // Fica em posição de espera no meio
