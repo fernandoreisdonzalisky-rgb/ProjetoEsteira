@@ -13,7 +13,7 @@ void iniciaRobo() {
 
   servoB.write(90); //limite min Base
   servoD.write(90); //limite min Altura
-  servoE.write(100); //limite min Avanço
+  servoE.write(120); //limite min Avanço
   servoG.write(0); //limite min Garra
 }
 
