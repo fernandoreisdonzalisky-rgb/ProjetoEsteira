@@ -14,4 +14,13 @@ void verificarTeclado() {
       Serial.println(">>> COMANDO TECLADO: Sistema DESLIGADO");
     }
   }
+
+  void atualizarSistema() {
+
+   botaoLiga();
+   botaoDesliga();
+
+   verificarSensor1();
+   verificarSensor2();
+}
 }

@@ -31,6 +31,7 @@ void moverBase(int anguloDestino) {
 
       if (!sistemaLigado) return;
       servoB.write(i);
+      atualizarSistema();
       delay(15);
     }
   } else {
@@ -38,8 +39,8 @@ void moverBase(int anguloDestino) {
     for (int i = atual; i >= anguloDestino; i--) {
       
       if (!sistemaLigado) return;
-
       servoB.write(i);
+      atualizarSistema();
       delay(15);
     }
   }
@@ -52,14 +53,17 @@ void controlarGarra(int anguloDestino) {
   if (atual < anguloDestino) {
 
     for (int i = atual; i <= anguloDestino; i++) {
+
+      if (!sistemaLigado) return;
       servoG.write(i);
+      atualizarSistema();
       delay(15);
     }
   } else {
 
     for (int i = atual; i >= anguloDestino; i--) {
-
       servoG.write(i);
+      atualizarSistema();
       delay(15);
     }
   }
@@ -76,6 +80,7 @@ void controlarAltura(int anguloDestino) {
 
       if (!sistemaLigado) return;
       servoD.write(e);
+      atualizarSistema();
       delay(15);
     }
   } else {
@@ -83,6 +88,7 @@ void controlarAltura(int anguloDestino) {
 
       if (!sistemaLigado) return;
       servoD.write(e);
+      atualizarSistema();
       delay(15);
     }
   }
@@ -98,6 +104,7 @@ void controlarAvanco(int anguloDestino) {
 
       if (!sistemaLigado) return;
       servoE.write(d);
+      atualizarSistema();
       delay(15);
     }
  } else {
@@ -105,8 +112,8 @@ void controlarAvanco(int anguloDestino) {
     for (int d = atual; d >= anguloDestino; d--) {
 
       if (!sistemaLigado) return;
-
       servoE.write(d);
+      atualizarSistema();
       delay(15);
     }
   }
