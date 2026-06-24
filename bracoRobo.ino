@@ -178,13 +178,14 @@ void executarCicloRobo() {
   controlarEsquerda(90); 
   controlarGarra(90);     // PEGA a caixa da esteira
   controlarDireita(90);
-  controlarEsquerda(135);   // Recolhe
+  controlarEsquerda(120);   // Recolhe
   moverBase(0);          // Gira até o Caminhão
        
-  controlarDireita(120);   // Avança
-  controlarGarra(0);      // SOLTA no caminhão
-  controlarEsquerda(110);   // Recolhe
-  controlarDireita(90);   // Sobe
+  controlarEsquerda(150);   // Avança     
+  controlarDireita(160);   // Recolhe
+  controlarGarra(0);   // SOLTA no caminhão
+  controlarDireita(90);  
+  controlarEsquerda(100);
   
   moverBase(180);      
   bracoAtivo = false;   // Ciclo finalizado
