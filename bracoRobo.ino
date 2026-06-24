@@ -172,12 +172,12 @@ void executarCicloRobo() {
 
   bracoAtivo = true;      // Para a esteira para o braço agir com segurança
   
-  moverBase(45);         // Vai até o final da esteira (Sensor 2)
-  controlarEsquerda(180);
-  controlarDireita(75); 
-  controlarDireita(90);   
+  moverBase(45);         // Vai até o final da esteira (Sensor 2) 
+  controlarDireita(180);
+  controlarEsquerda(70);   
+  controlarEsquerda(90); 
   controlarGarra(90);     // PEGA a caixa da esteira
-  controlarDireita(60);
+  controlarDireita(90);
   controlarEsquerda(135);   // Recolhe
   moverBase(0);          // Gira até o Caminhão
        
