@@ -69,8 +69,7 @@ void controlarGarra(int anguloDestino) {
   }
 }
 
-// Funções para Altura (E) e Avanço (D)
-void controlarAltura(int anguloDestino) {
+void controlarDireita(int anguloDestino) {
 
   int atual = servoD.read();
 
@@ -94,7 +93,7 @@ void controlarAltura(int anguloDestino) {
   }
 }
 
-void controlarAvanco(int anguloDestino) {
+void controlarEsquerda(int anguloDestino) {
 
   int atual = servoE.read();
 
@@ -130,21 +129,21 @@ void executarCicloRobo() {
   bracoAtivo = true;
   
   moverBase(180);           // Vai no Estoque
-  controlarAvanco(140);   // Avança
-  controlarAltura(160);   // Abaixa
+  controlarEsquerda(140);   // Avança
+  controlarDireita(160);   // Abaixa
   controlarGarra(90);     // PEGA
-  controlarAvanco(100);   // Recolhe
-  controlarAltura(90);    // Sobe
+  controlarEsquerda(100);   // Recolhe
+  controlarDireita(90);    // Sobe
   
   moverBase(135);         // Vai para o início da Esteira
-  controlarAltura(180); 
-  controlarAvanco(70); 
-  controlarAvanco(90); 
+  controlarDireita(180); 
+  controlarEsquerda(70); 
+  controlarEsquerda(90); 
   desligarEsteira();
   controlarGarra(0);      // SOLTA na esteira
   bracoAtivo = false;     // Libera o sensor para parar a esteira e abrir funil
-  controlarAltura(90);
-  controlarAvanco(120);   // Recolhe
+  controlarDireita(90);
+  controlarEsquerda(120);   // Recolhe
 
   verificarSensor1(); //verificação do sensor 1 para a ação do funil
   
@@ -174,18 +173,18 @@ void executarCicloRobo() {
   bracoAtivo = true;      // Para a esteira para o braço agir com segurança
   
   moverBase(45);         // Vai até o final da esteira (Sensor 2)
-  controlarAltura(180); 
-  controlarAvanco(60);   // Avança
-  controlarAltura(90);    //avança
+  controlarEsquerda(180);
+  controlarDireita(75); 
+  controlarDireita(90);   
   controlarGarra(90);     // PEGA a caixa da esteira
-  controlarAltura(60);
-  controlarAvanco(135);   // Recolhe
+  controlarDireita(60);
+  controlarEsquerda(135);   // Recolhe
   moverBase(0);          // Gira até o Caminhão
        
-  controlarAltura(140);   // Avança
+  controlarDireita(120);   // Avança
   controlarGarra(0);      // SOLTA no caminhão
-  controlarAvanco(90);   // Recolhe
-  controlarAltura(90);   // Sobe
+  controlarEsquerda(110);   // Recolhe
+  controlarDireita(90);   // Sobe
   
   moverBase(180);      
   bracoAtivo = false;   // Ciclo finalizado
