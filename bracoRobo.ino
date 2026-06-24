@@ -11,7 +11,7 @@ void iniciaRobo() {
   servoE.attach(servoEsquerdapin);
   servoG.attach(servoGarrapin); 
 
-  servoB.write(180); //limite min Base
+  servoB.write(90); //limite min Base
   servoD.write(90); //limite min Altura
   servoE.write(100); //limite min Avanço
   servoG.write(0); //limite min Garra
@@ -130,23 +130,26 @@ void executarCicloRobo() {
   bracoAtivo = true;
   
   moverBase(180);           // Vai no Estoque
-  controlarAltura(140);   // Abaixa
-  controlarAvanco(120);   // Avança
-  controlarGarra(40);     // PEGA
-  controlarAvanco(60);   // Recolhe
-  controlarAltura(105);    // Sobe
+  controlarAvanco(140);   // Avança
+  controlarAltura(160);   // Abaixa
+  controlarGarra(90);     // PEGA
+  controlarAvanco(100);   // Recolhe
+  controlarAltura(90);    // Sobe
   
-  moverBase(135);          // Vai para o início da Esteira
-  controlarAvanco(160);  // Avança
+  moverBase(135);         // Vai para o início da Esteira
+  controlarAltura(180); 
+  controlarAvanco(70); 
+  controlarAvanco(90); 
   desligarEsteira();
   controlarGarra(0);      // SOLTA na esteira
   bracoAtivo = false;     // Libera o sensor para parar a esteira e abrir funil
-  controlarAvanco(105);   // Recolhe
+  controlarAltura(90);
+  controlarAvanco(120);   // Recolhe
 
   verificarSensor1(); //verificação do sensor 1 para a ação do funil
   
   bracoAtivo = false;     // Libera a esteira para levar a caixa
-  moverBase(95);          // Fica em posição de espera no meio
+  moverBase(90);          // Fica em posição de espera no meio
 
 
   // --- PARTE 2: ESPERAR CHEGAR NO SENSOR 2 ---
@@ -171,15 +174,17 @@ void executarCicloRobo() {
   bracoAtivo = true;      // Para a esteira para o braço agir com segurança
   
   moverBase(45);         // Vai até o final da esteira (Sensor 2)
-  controlarAvanco(120);   // Avança
-  controlarGarra(40);     // PEGA a caixa da esteira
-  controlarAvanco(105);   // Recolhe
+  controlarAltura(180); 
+  controlarAvanco(60);   // Avança
+  controlarAltura(90);    //avança
+  controlarGarra(90);     // PEGA a caixa da esteira
+  controlarAltura(60);
+  controlarAvanco(135);   // Recolhe
   moverBase(0);          // Gira até o Caminhão
-  controlarAltura(170);   // desce
        
-  controlarAvanco(120);   // Avança
+  controlarAltura(140);   // Avança
   controlarGarra(0);      // SOLTA no caminhão
-  controlarAvanco(105);   // Recolhe
+  controlarAvanco(90);   // Recolhe
   controlarAltura(90);   // Sobe
   
   moverBase(180);      
