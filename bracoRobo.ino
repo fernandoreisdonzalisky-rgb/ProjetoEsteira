@@ -151,14 +151,18 @@ void executarCicloRobo() {
   // --- PARTE 2: ESPERAR CHEGAR NO SENSOR 2 ---
   Serial.println("Aguardando caixa chegar no Sensor 2...");
 
-  while (sensor2Ativado == false) { // Enquanto NÃO chegar no sensor 2
+  while (sensor2Ativado == false) {
 
-   verificarSensor2(); //chama o sensor2
+    Serial.print("sistemaLigado=");
+    Serial.println(sistemaLigado);
 
-  if (!sistemaLigado) return;
+    if (!sistemaLigado) return;
 
-    delay(100); 
-  }
+    atualizarSistema();
+
+    delay(100);
+}
+
 
   // --- PARTE 3: ESTEIRA (SENSOR 2) -> CAMINHÃO ---
   Serial.println("Caixa detectada no Sensor 2! Levando para o caminhão...");
@@ -181,4 +185,5 @@ void executarCicloRobo() {
   bracoAtivo = false;   // Ciclo finalizado
    // Volta para o início para a próxima caixa
   Serial.println("Ciclo completo concluído!");
+
 }

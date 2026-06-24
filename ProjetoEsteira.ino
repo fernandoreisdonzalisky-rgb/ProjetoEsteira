@@ -50,7 +50,8 @@ void controlarAvanco(int anguloDestino);
 
 void executarCicloRobo();
 
-void atualizarSistema();
+void verificarTeclado();
+
 
 
 // ===== SETUP =====

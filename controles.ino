@@ -1,20 +1,27 @@
-
 void verificarTeclado() {
-  if (Serial.available() > 0) {
-    char tecla = Serial.read(); // Lê o caractere digitado
 
-    if (tecla == 'L' || tecla == 'l') { // Se digitar 'L'
+  if (Serial.available() > 0) {
+
+    char tecla = Serial.read();
+
+    Serial.print("ASCII recebido: ");
+    Serial.println((int)tecla);
+
+    Serial.print("Caractere recebido: ");
+    Serial.println(tecla);
+
+    if (tecla == 'L' || tecla == 'l') {
       sistemaLigado = true;
+      Serial.println(">>> COMANDO TECLADO: Sistema Ligado");
       ligarEsteira();
-      Serial.println(">>> COMANDO TECLADO: Sistema LIGADO");
-    } 
-    else if (tecla == 'D' || tecla == 'd') { // Se digitar 'D'
+    }
+    else if (tecla == 'D' || tecla == 'd') {
+      Serial.println(">>> COMANDO TECLADO: Sistema Desligado");
       sistemaLigado = false;
       desligarEsteira();
-      Serial.println(">>> COMANDO TECLADO: Sistema DESLIGADO");
     }
   }
-
+}
   void atualizarSistema() {
 
    botaoLiga();
@@ -22,5 +29,5 @@ void verificarTeclado() {
 
    verificarSensor1();
    verificarSensor2();
-}
+   verificarTeclado();
 }

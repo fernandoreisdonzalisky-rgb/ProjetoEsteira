@@ -46,13 +46,15 @@ void verificarSensor1() {
 }
 void verificarSensor2() {
 
-  // BLOQUEIA TODO O SENSOR
-  if (sistemaLigado == false || sensor1Ativado == true ) {
+  Serial.println("Entrou verificarSensor2");
 
-    Serial.println("Sensor2 Desativado");
+  // BLOQUEIA TODO O SENSOR
+if (sistemaLigado == false || sensor1Ativado == true) {
+
+    Serial.println("Sensor2 BLOQUEADO");
 
     return;
-  }
+} 
 
   int estadoSensor2 = digitalRead(sensor2);
 
