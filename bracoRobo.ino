@@ -137,7 +137,8 @@ void executarCicloRobo() {
   controlarAltura(105);    // Sobe
   
   moverBase(135);          // Vai para o início da Esteira
-  controlarAvanco(160);   // Avança
+  controlarAvanco(160);  // Avança
+  desligarEsteira();
   controlarGarra(0);      // SOLTA na esteira
   bracoAtivo = false;     // Libera o sensor para parar a esteira e abrir funil
   controlarAvanco(105);   // Recolhe
