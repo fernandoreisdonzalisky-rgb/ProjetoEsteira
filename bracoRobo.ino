@@ -153,8 +153,8 @@ void executarCicloRobo() {
 
   while (sensor2Ativado == false) {
 
-    Serial.print("sistemaLigado=");
-    Serial.println(sistemaLigado);
+    //Serial.print("sistemaLigado=");
+    //Serial.println(sistemaLigado);
 
     if (!sistemaLigado) return;
 

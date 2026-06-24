@@ -15,7 +15,7 @@ void verificarSensor1() {
   // BLOQUEIA TODO O SENSOR
   if (sistemaLigado == false || sensor2Ativado == true || bracoAtivo == true) {
 
-    Serial.println("Sensor1 Desativado");
+    //Serial.println("Sensor1 Desativado");
 
     return;
   }
@@ -36,7 +36,7 @@ void verificarSensor1() {
 
     ligarEsteira(0); //delay
 
-    Serial.println("Leitura1 realizada");
+    //Serial.println("Leitura1 realizada");
   }
 
   if (estadoSensor1 == HIGH) {
@@ -46,12 +46,10 @@ void verificarSensor1() {
 }
 void verificarSensor2() {
 
-  Serial.println("Entrou verificarSensor2");
-
   // BLOQUEIA TODO O SENSOR
 if (sistemaLigado == false || sensor1Ativado == true) {
 
-    Serial.println("Sensor2 BLOQUEADO");
+    //Serial.println("Sensor2 Desativado");
 
     return;
 } 
@@ -66,7 +64,7 @@ if (sistemaLigado == false || sensor1Ativado == true) {
 
     desligarEsteira();
 
-    Serial.println("leitura2 realizada");
+    //Serial.println("leitura2 realizada");
 
   }
 
