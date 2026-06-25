@@ -2,9 +2,6 @@ int sensor1 = 7;
 
 int sensor2 = 8;
 
-bool sensor1Ativado = false;
-
-bool sensor2Ativado = false;
 
 void iniciaSensores() {
 
@@ -16,9 +13,9 @@ void iniciaSensores() {
 void verificarSensor1() {
 
   // BLOQUEIA TODO O SENSOR
-  if (sistemaLigado == false || sensor2Ativado == true) {
+  if (sistemaLigado == false || sensor2Ativado == true || bracoAtivo == true) {
 
-    Serial.println("Sensor1 Desativado");
+    //Serial.println("Sensor1 Desativado");
 
     return;
   }
@@ -33,13 +30,13 @@ void verificarSensor1() {
 
     desligarEsteira();
 
-    abrirFunil(1000);
+    abrirFunil(90,2000); //ângulo e delay
 
-    fecharFunil(200);
+    fecharFunil(0,1000); //ângulo e delay
 
-    ligarEsteira(2000);
+    ligarEsteira(0); //delay
 
-    Serial.println("Leitura1 realizada");
+    //Serial.println("Leitura1 realizada");
   }
 
   if (estadoSensor1 == HIGH) {
@@ -50,12 +47,12 @@ void verificarSensor1() {
 void verificarSensor2() {
 
   // BLOQUEIA TODO O SENSOR
-  if (sistemaLigado == false || sensor1Ativado == true ) {
+if (sistemaLigado == false || sensor1Ativado == true) {
 
-    Serial.println("Sensor2 Desativado");
+    //Serial.println("Sensor2 Desativado");
 
     return;
-  }
+} 
 
   int estadoSensor2 = digitalRead(sensor2);
 
@@ -67,9 +64,8 @@ void verificarSensor2() {
 
     desligarEsteira();
 
-    Serial.println("leitura2 realizada");
+    //Serial.println("leitura2 realizada");
 
-    
   }
 
   if (estadoSensor2 == HIGH) {

@@ -14,7 +14,8 @@ void iniciaPonteH() {
 
 // ===== LIGA ESTEIRA =====
 
-void ligarEsteira(int espera = 0) {
+
+void ligarEsteira(int espera) {
 
   delay(espera);
 
@@ -24,11 +25,12 @@ void ligarEsteira(int espera = 0) {
   analogWrite(ENA, velocidade);
 
   Serial.println("Esteira ligada");
+  
 }
 
 // ===== DESLIGA ESTEIRA =====
 
-void desligarEsteira(int espera = 0) {
+void desligarEsteira(int espera) {
 
   delay(espera);
 
@@ -37,5 +39,5 @@ void desligarEsteira(int espera = 0) {
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, LOW);
 
-  Serial.println("Esteria desligada");
+  Serial.println("Esteira desligada");
 }

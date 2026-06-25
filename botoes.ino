@@ -1,23 +1,20 @@
-int botaoliga = 5;
-int botaodesliga = 6;
+int pinBotaoLiga= 5;
+int pinBotaoDesliga = 6;
 
-bool sistemaLigado = true;
 
 void iniciaBotao() {
 
-  pinMode(botaoliga, INPUT_PULLUP);
-  pinMode(botaodesliga, INPUT_PULLUP);
+  pinMode(pinBotaoLiga, INPUT_PULLUP);
+  pinMode(pinBotaoDesliga, INPUT_PULLUP);
 }
 
 void botaoLiga() {
 
-  int estadoliga = digitalRead(botaoliga);
+  int estadoliga = digitalRead(pinBotaoLiga);
 
   if (estadoliga == LOW) {
 
     sistemaLigado = true;
-
-    ligarEsteira();
 
     Serial.println("Sistema LIGADO");
 
@@ -28,7 +25,7 @@ void botaoLiga() {
 
 void botaoDesliga() {
 
-  int estadodesliga = digitalRead(botaodesliga);
+  int estadodesliga = digitalRead(pinBotaoDesliga);
 
   if (estadodesliga == LOW) {
 
@@ -38,6 +35,6 @@ void botaoDesliga() {
 
     Serial.println("Sistema DESLIGADO");
 
-    delay(500);
+    delay(1000);
   }
 }
