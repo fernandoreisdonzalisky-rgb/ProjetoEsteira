@@ -1,5 +1,8 @@
-
 #include <Servo.h>
+
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27, 16, 2); 
 
 Servo Fservo;
 
@@ -52,7 +55,11 @@ void executarCicloRobo();
 
 void verificarTeclado();
 
+void exibirMensagem(const char* linha1, const char* linha2);
 
+void exibirLinha1(const char* texto);
+
+void exibirLinha2(const char* texto);
 
 // ===== SETUP =====
 
@@ -69,6 +76,8 @@ void setup() {
   iniciaBotao();
 
   iniciaRobo();
+
+  iniciaDisplay();
 }
 
 // ===== LOOP =====

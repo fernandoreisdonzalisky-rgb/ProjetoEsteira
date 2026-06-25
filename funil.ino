@@ -15,6 +15,7 @@ void abrirFunil(int destino,int espera) {
 
   if (funilAberto == false) {
     Serial.println("Abrindo funil...");
+    exibirLinha2("Funil: ABRINDO");
     
     delay(espera);
     
@@ -34,6 +35,7 @@ void abrirFunil(int destino,int espera) {
 
     funilAberto = true;
     Serial.println("Funil aberto.");
+    exibirLinha2("Funil: ABERTO");
   }
 }
 
@@ -41,6 +43,7 @@ void fecharFunil(int destino,int espera) {
   
   if (funilAberto == true) {
     Serial.println("Fechando funil...");
+    exibirLinha2("Funil: FECHANDO");
 
     int atual = Fservo.read();
 
@@ -56,6 +59,7 @@ void fecharFunil(int destino,int espera) {
 
     funilAberto = false;
     Serial.println("Funil fechado.");
+    exibirLinha2("Funil: FECHADO");
     delay(espera); // Espera após fechar
   }
 }

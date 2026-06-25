@@ -126,15 +126,17 @@ void executarCicloRobo() {
 
   // --- PARTE 1: ESTOQUE -> ESTEIRA ---
   Serial.println("Iniciando: Estoque para Esteira");
+  exibirMensagem("Robo: Estoque", "Coletando...");
   bracoAtivo = true;
   
   moverBase(180);           // Vai no Estoque
   controlarEsquerda(140);   // Avança
   controlarDireita(160);   // Abaixa
   controlarGarra(90);     // PEGA
-  controlarEsquerda(100);   // Recolhe
+  controlarEsquerda(100);   
   controlarDireita(90);    // Sobe
   
+  exibirMensagem("Robo: Esteira", "Soltando peca...");
   moverBase(135);         // Vai para o início da Esteira
   controlarDireita(180); 
   controlarEsquerda(70); 
@@ -153,6 +155,7 @@ void executarCicloRobo() {
 
   // --- PARTE 2: ESPERAR CHEGAR NO SENSOR 2 ---
   Serial.println("Aguardando caixa chegar no Sensor 2...");
+  exibirMensagem("Aguardando...", "Sensor 2");
 
   while (sensor2Ativado == false) {
 
@@ -169,6 +172,7 @@ void executarCicloRobo() {
 
   // --- PARTE 3: ESTEIRA (SENSOR 2) -> CAMINHÃO ---
   Serial.println("Caixa detectada no Sensor 2! Levando para o caminhão...");
+  exibirMensagem("Robo: Sensor 2", "Pegando...");
 
   bracoAtivo = true;      // Para a esteira para o braço agir com segurança
   
@@ -178,11 +182,12 @@ void executarCicloRobo() {
   controlarEsquerda(90); 
   controlarGarra(90);     // PEGA a caixa da esteira
   controlarDireita(90);
-  controlarEsquerda(120);   // Recolhe
-  moverBase(0);          // Gira até o Caminhão
-       
-  controlarEsquerda(150);   // Avança     
-  controlarDireita(160);   // Recolhe
+  controlarEsquerda(120); 
+
+  exibirMensagem("Robo: Caminhao", "Soltando..."); 
+  moverBase(0);          // Gira até o Caminhão  
+  controlarEsquerda(150);     
+  controlarDireita(160);   
   controlarGarra(0);   // SOLTA no caminhão
   controlarDireita(90);  
   controlarEsquerda(100);
@@ -191,5 +196,6 @@ void executarCicloRobo() {
   bracoAtivo = false;   // Ciclo finalizado
    // Volta para o início para a próxima caixa
   Serial.println("Ciclo completo concluído!");
+  exibirMensagem("Ciclo OK!", "Pronto p/ prox.");
 
 }

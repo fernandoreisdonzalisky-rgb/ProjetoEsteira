@@ -17,6 +17,7 @@ void botaoLiga() {
     sistemaLigado = true;
 
     Serial.println("Sistema LIGADO");
+    exibirMensagem("Sistema LIGADO", "Iniciando...");
 
     delay(500);
   }
@@ -34,6 +35,7 @@ void botaoDesliga() {
     desligarEsteira();
 
     Serial.println("Sistema DESLIGADO");
+    exibirMensagem("Sistema OFF", "Aguardando...");
 
     delay(1000);
   }

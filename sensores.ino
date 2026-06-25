@@ -35,6 +35,8 @@ void verificarSensor1() {
     fecharFunil(0,1000); //ângulo e delay
 
     ligarEsteira(0); //delay
+    
+    exibirLinha2("Esteira ligada");
 
     //Serial.println("Leitura1 realizada");
   }
