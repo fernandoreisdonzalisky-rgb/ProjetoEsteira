@@ -1,5 +1,4 @@
 int IN1 = 2;
-int IN2 = 4;
 
 int ENA = 3;
 
@@ -8,7 +7,6 @@ int velocidade = 180; // 0 a 255
 void iniciaPonteH() {
 
   pinMode(IN1, OUTPUT);
-  pinMode(IN2, OUTPUT);
   pinMode(ENA, OUTPUT);
 }
 
@@ -20,7 +18,6 @@ void ligarEsteira(int espera) {
   delay(espera);
 
   digitalWrite(IN1, HIGH);
-  digitalWrite(IN2, LOW);
 
   analogWrite(ENA, velocidade);
 
@@ -37,7 +34,6 @@ void desligarEsteira(int espera) {
   analogWrite(ENA, 0);
 
   digitalWrite(IN1, LOW);
-  digitalWrite(IN2, LOW);
 
   Serial.println("Esteira desligada");
 }
