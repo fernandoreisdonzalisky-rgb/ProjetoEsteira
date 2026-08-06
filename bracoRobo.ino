@@ -11,9 +11,9 @@ void iniciaRobo() {
   servoE.attach(servoEsquerdapin);
   servoG.attach(servoGarrapin); 
 
-  servoB.write(90); //limite min Base
-  servoD.write(90); 
-  servoE.write(120); 
+  servoB.write(90); //meio da base
+  servoD.write(90); //ângulo mais alto da altura
+  servoE.write(120); //ângulo min do avanço
   servoG.write(0); //limite min Garra
 }
 
