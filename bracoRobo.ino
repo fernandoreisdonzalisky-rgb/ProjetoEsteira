@@ -1,7 +1,7 @@
   
 int servoBasepin = 10;
-int servoDireitapin = 11;
-int servoEsquerdapin = 12;
+int servoDireitapin = 12;
+int servoEsquerdapin = 11;
 int servoGarrapin = 13;
 
 void iniciaRobo() {
@@ -128,17 +128,17 @@ void executarCicloRobo() {
   Serial.println("Iniciando: Estoque para Esteira");
   bracoAtivo = true;
   
-  moverBase(180);           // Vai no Estoque
-  controlarEsquerda(140);   // Avança
-  controlarDireita(160);   // Abaixa
+  moverBase(180);  // Vai no Estoque        
+  controlarEsquerda(160);   // Avança
+  controlarDireita(180);
   controlarGarra(90);     // PEGA
-  controlarEsquerda(100);   // Recolhe
   controlarDireita(90);    // Sobe
+  controlarEsquerda(100); //recolhe
   
   moverBase(135);         // Vai para o início da Esteira
-  controlarDireita(180); 
-  controlarEsquerda(70); 
-  controlarEsquerda(90); 
+  controlarEsquerda(160); 
+  controlarEsquerda(180); 
+  controlarDireita(120); 
   desligarEsteira();
   controlarGarra(0);      // SOLTA na esteira
   bracoAtivo = false;     // Libera o sensor para parar a esteira e abrir funil
