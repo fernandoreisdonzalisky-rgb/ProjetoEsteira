@@ -1,7 +1,7 @@
   
 int servoBasepin = 10;
 int servoDireitapin = 12;
-int servoEsquerdapin = 11;
+int servoEsquerdapin = 4;
 int servoGarrapin = 13;
 
 void iniciaRobo() {
