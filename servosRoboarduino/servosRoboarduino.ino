@@ -8,8 +8,8 @@ Servo servoG;
 
 // Define os pinos para cada servo
 const int pinoServoBase = 10;
-const int pinoServoDireita = 12;
-const int pinoServoEsquerda = 4;
+const int pinoServoDireita = 4;
+const int pinoServoEsquerda = 12;
 const int pinoServoGarra = 13;
 
 const int pinoPot = A1; // Pino Analógico do Arduino para o potenciômetro
@@ -90,9 +90,9 @@ void loop() {
         Serial.println("Potenciômetro (0)");
       } else {
         Serial.println("Teclado (1)");
-        Serial.println("  Base: 'q' (aumenta), 'a' (diminui)");
+        Serial.println("  Base: 'a' (aumenta), 'd' (diminui)");
         Serial.println("  Direita: 'w' (aumenta), 's' (diminui)");
-        Serial.println("  Esquerda: 'e' (aumenta), 'd' (diminui)");
+        Serial.println("  Esquerda: 'q' (aumenta), 'e' (diminui)");
         Serial.println("  Garra: 'r' (aumenta), 'f' (diminui)");
       }
       return; // Já processou o comando de modo, sai para evitar processar como comando de servo
@@ -153,13 +153,13 @@ void handleKeyboardControl(char comando) {
 
   switch (comando) {
     // --- Controle do Servo da Base ---
-    case 'q':
+    case 'a':
       novaPosicao = posBase + incremento;
       if (novaPosicao > 180) novaPosicao = 180;
       moveServoSmoothly(servoB, novaPosicao, posBase, velocidadeServo);
       Serial.println("Base: " + String(posBase));
       break;
-    case 'a':
+    case 'd':
       novaPosicao = posBase - incremento;
       if (novaPosicao < 0) novaPosicao = 0;
       moveServoSmoothly(servoB, novaPosicao, posBase, velocidadeServo);
@@ -181,13 +181,13 @@ void handleKeyboardControl(char comando) {
       break;
 
     // --- Controle do Servo da Esquerda ---
-    case 'e':
+    case 'q':
       novaPosicao = posEsquerda + incremento;
       if (novaPosicao > 180) novaPosicao = 180;
       moveServoSmoothly(servoE, novaPosicao, posEsquerda, velocidadeServo);
       Serial.println("Esquerda: " + String(posEsquerda));
       break;
-    case 'd':
+    case 'e':
       novaPosicao = posEsquerda - incremento;
       if (novaPosicao < 0) novaPosicao = 0;
       moveServoSmoothly(servoE, novaPosicao, posEsquerda, velocidadeServo);
