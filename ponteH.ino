@@ -2,7 +2,7 @@ int IN1 = 2;
 
 int ENA = 3;
 
-int velocidade = 180; // 0 a 255
+int velocidade = 200; // 0 a 255
 
 void iniciaPonteH() {
 
