@@ -152,8 +152,10 @@ void executarCicloRobo() {
 
 
   // --- PARTE 2: ESPERAR CHEGAR NO SENSOR 2 ---
-  Serial.println("Aguardando caixa chegar no Sensor 2...");
 
+  if (funilAberto == true) {
+  Serial.println("Aguardando caixa chegar no Sensor 2...");
+  }
   while (sensor2Ativado == false) {
 
     //Serial.print("sistemaLigado=");

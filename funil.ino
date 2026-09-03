@@ -2,8 +2,6 @@ int servoPin = 9;
 
 //ESTADO DO FUNIL
 
-bool funilAberto = false;
-
 void iniciaFunil() {
 
   Fservo.attach(servoPin);

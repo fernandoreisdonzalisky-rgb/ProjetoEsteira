@@ -18,6 +18,7 @@ bool sensor1Ativado = false;
 bool sensor2Ativado = false;
 bool bracoAtivo = false;
 int etapaBraco = 0;
+bool funilAberto = false;
 
 
 // ===== MÓDULOS =====
