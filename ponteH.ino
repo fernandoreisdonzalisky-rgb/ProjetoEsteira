@@ -21,6 +21,8 @@ void ligarEsteira(int espera) {
 
   analogWrite(ENA, velocidade);
 
+  esteiraLigada = true;
+
   Serial.println("Esteira ligada");
   
 }
@@ -34,6 +36,8 @@ void desligarEsteira(int espera) {
   analogWrite(ENA, 0);
 
   digitalWrite(IN1, LOW);
+
+  esteiraLigada = false;
 
   Serial.println("Esteira desligada");
 }

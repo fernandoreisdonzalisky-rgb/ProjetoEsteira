@@ -13,7 +13,7 @@ void iniciaSensores() {
 void verificarSensor1() {
 
   // BLOQUEIA TODO O SENSOR
-  if (sistemaLigado == false || sensor2Ativado == true || bracoAtivo == true) {
+  if (sistemaLigado == false || sensor2Ativado == true || bracoAtivo == true || esteiraLigada == true) {
 
     //Serial.println("Sensor1 Desativado");
 
