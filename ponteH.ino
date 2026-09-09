@@ -1,4 +1,4 @@
-int IN1 = 4;
+int IN1 = 3;
 
 int ENA = 2;
 

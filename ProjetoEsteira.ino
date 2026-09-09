@@ -19,8 +19,6 @@ bool sensor2Ativado = false;
 bool bracoAtivo = false;
 bool funilAberto = false;
 bool esteiraLigada = false;
-bool retornoEmergencia = false;
-int contadorDesliga = 0;
 int etapaBraco = 0;
 
 

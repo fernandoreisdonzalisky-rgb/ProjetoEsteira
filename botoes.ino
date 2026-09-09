@@ -25,34 +25,15 @@ void botaoLiga() {
 
 void botaoDesliga() {
 
-  int estadoDesliga = digitalRead(pinBotaoDesliga);
+  int estadodesliga = digitalRead(pinBotaoDesliga);
 
-  if (estadoDesliga == LOW) {
-
-    contadorDesliga++;
-
-    Serial.print("Clique no DESLIGA: ");
-    Serial.println(contadorDesliga);
-
-    // Desliga o sistema normalmente
+  if (estadodesliga == LOW) {
     sistemaLigado = false;
+
     desligarEsteira();
 
-    // Só ativa o retorno no terceiro clique
-    if (contadorDesliga >= 3) {
-      contadorDesliga = 0;
+    Serial.println("Sistema DESLIGADO");
 
-      retornoEmergencia = true;
-
-      Serial.println(">>> RETORNO DE EMERGENCIA ATIVADO <<<");
-
-      retornaBraco();
-
-      retornoEmergencia = false;
-
-      Serial.println(">>> BRACO RETORNOU AO SETUP <<<");
-    }
-
-    delay(500);
+    delay(1000);
   }
 }
