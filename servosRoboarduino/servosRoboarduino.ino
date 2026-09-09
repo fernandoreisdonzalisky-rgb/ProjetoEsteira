@@ -7,10 +7,10 @@ Servo servoE;
 Servo servoG;
 
 // Define os pinos para cada servo
-const int pinoServoBase = 10;
-const int pinoServoDireita = 12;
-const int pinoServoEsquerda = 4;
-const int pinoServoGarra = 13;
+const int pinoServoBase = A3;
+const int pinoServoDireita = A1;
+const int pinoServoEsquerda = A2;
+const int pinoServoGarra = A0;
 
 const int pinoPot = A1; // Pino Analógico do Arduino para o potenciômetro
 
