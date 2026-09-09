@@ -1,4 +1,4 @@
-int servoPin = 9;
+int servoPin = A5;
 
 //ESTADO DO FUNIL
 

@@ -1,8 +1,8 @@
   
-int servoBasepin = 10;
-int servoDireitapin = 12;
-int servoEsquerdapin = 4;
-int servoGarrapin = 13;
+int servoBasepin = A3;
+int servoDireitapin = A2;
+int servoEsquerdapin = A1;
+int servoGarrapin = A0;
 
 void iniciaRobo() {
 
@@ -17,6 +17,22 @@ void iniciaRobo() {
   servoG.write(0); //limite min Garra
 }
 
+void retornaBraco() {
+
+  bracoAtivo = true;
+
+  moverBase(180);
+  controlarEsquerda(90);
+  controlarDireita(105);
+  controlarGarra(0);
+
+  bracoAtivo = false;
+
+  sistemaLigado = false;
+
+  Serial.println("Braco no SETUP.");
+  Serial.println("Sistema DESLIGADO.");
+}
 
 // --- FUNÇÕES DE MOVIMENTO BÁSICO (Músculos) ---
 // Estas funções garantem o movimento suave para qualquer ângulo

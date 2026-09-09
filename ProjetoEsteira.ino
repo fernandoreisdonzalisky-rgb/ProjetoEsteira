@@ -17,9 +17,11 @@ bool sistemaLigado = false;
 bool sensor1Ativado = false;
 bool sensor2Ativado = false;
 bool bracoAtivo = false;
-int etapaBraco = 0;
 bool funilAberto = false;
 bool esteiraLigada = false;
+bool retornoEmergencia = false;
+int contadorDesliga = 0;
+int etapaBraco = 0;
 
 
 // ===== MÓDULOS =====
@@ -42,13 +44,15 @@ void botaoLiga();
 
 void botaoDesliga();
 
+void retornaBraco();
+
 void moverBase(int anguloDestino);
 
 void controlarGarra(int anguloDestino);
 
-void controlarAltura(int anguloDestino);
+void controlarEsquerdo(int anguloDestino);
 
-void controlarAvanco(int anguloDestino);
+void controlarDireita(int anguloDestino);
 
 void executarCicloRobo();
 
