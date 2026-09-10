@@ -12,8 +12,8 @@ void iniciaRobo() {
   servoG.attach(servoGarrapin); 
 
   servoB.write(90); //meio da base
-  servoD.write(90); //ângulo mais alto da altura
-  servoE.write(120); //ângulo min do avanço
+  servoD.write(120); //ângulo mais alto da altura
+  servoE.write(110); //ângulo min do avanço
   servoG.write(0); //limite min Garra
 }
 
@@ -134,6 +134,40 @@ void controlarEsquerda(int anguloDestino) {
   }
 }
 
+void controlarDireitaEsquerda(int anguloDestino) {
+
+  int atualD = servoD.read();
+  int atualE = servoE.read();
+
+ 
+  while (atualD != anguloDestino || atualE != anguloDestino) {
+
+    if (!sistemaLigado) return;
+
+    // Servo direita
+    if (atualD < anguloDestino) {
+      atualD++;
+    } 
+    else if (atualD > anguloDestino) {
+      atualD--;
+    }
+
+    // Servo esquerda
+    if (atualE < anguloDestino) {
+      atualE++;
+    } 
+    else if (atualE > anguloDestino) {
+      atualE--;
+    }
+
+    servoD.write(atualD);
+    servoE.write(atualE);
+
+    atualizarSistema();
+
+    delay(15);
+  }
+}
 // --- FUNÇÕES DE AÇÃO COMPOSTA (Tarefas) ---
 
 void executarCicloRobo() {
@@ -147,6 +181,7 @@ void executarCicloRobo() {
   moverBase(180);  // Vai no Estoque        
   controlarEsquerda(160);   // Avança
   controlarDireita(180);
+  controlarEsquerda(120);
   controlarGarra(90);     // PEGA
   controlarDireita(90);    // Sobe
   controlarEsquerda(100); //recolhe
@@ -158,8 +193,9 @@ void executarCicloRobo() {
   desligarEsteira();
   controlarGarra(0);      // SOLTA na esteira
   bracoAtivo = false;     // Libera o sensor para parar a esteira e abrir funil
-  controlarDireita(90);
-  controlarEsquerda(120);   // Recolhe
+  controlarDireita(120);
+  controlarGarra(90);
+  controlarEsquerda(90);   // Recolhe
 
   verificarSensor1(); //verificação do sensor 1 para a ação do funil
   
