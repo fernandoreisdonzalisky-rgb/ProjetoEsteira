@@ -1,6 +1,6 @@
 int IN1 = 2;
 
-int ENA = 3;
+int ENA = A4;
 
 int velocidade = 200; // 0 a 255
 

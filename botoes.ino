@@ -28,6 +28,7 @@ void botaoDesliga() {
   int estadodesliga = digitalRead(pinBotaoDesliga);
 
   if (estadodesliga == LOW) {
+    
     sistemaLigado = false;
 
     desligarEsteira();
