@@ -25,16 +25,44 @@ void botaoLiga() {
 
 void botaoDesliga() {
 
-  int estadodesliga = digitalRead(pinBotaoDesliga);
+  bool leitura = digitalRead(pinBotaoDesliga);
 
-  if (estadodesliga == LOW) {
-    
-    sistemaLigado = false;
+  // Detectou uma mudança
+  if (leitura != estadoDesliga) {
+    ultimoDebounce = millis();
+    estadoDesliga = leitura;
+  }
 
-    desligarEsteira();
+  // Espera a leitura ficar estável
+  if ((millis() - ultimoDebounce) > tempoDebounce) {
 
-    Serial.println("Sistema DESLIGADO");
+    // Detecta o clique: HIGH -> LOW
+    if (estadoDesliga == LOW && ultimoEstadoDesliga == HIGH) {
 
-    delay(1000);
+      contadorDesliga++;
+
+      Serial.print("Clique DESLIGA: ");
+      Serial.println(contadorDesliga);
+
+      sistemaLigado = false;
+      desligarEsteira();
+
+      if (contadorDesliga >= 3) {
+
+        contadorDesliga = 0;
+
+        retornoEmergencia = true;
+
+        Serial.println(">>> RETORNO DE EMERGENCIA ATIVADO <<<");
+
+        retornaBraco();
+
+        retornoEmergencia = false;
+
+        Serial.println(">>> BRACO RETORNOU AO SETUP <<<");
+      }
+    }
+
+    ultimoEstadoDesliga = estadoDesliga;
   }
 }

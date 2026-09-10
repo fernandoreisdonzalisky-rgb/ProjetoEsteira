@@ -20,6 +20,14 @@ bool bracoAtivo = false;
 bool funilAberto = false;
 bool esteiraLigada = false;
 int etapaBraco = 0;
+bool estadoDesliga = HIGH;
+bool ultimoEstadoDesliga = HIGH;
+
+unsigned long ultimoDebounce = 0;
+const unsigned long tempoDebounce = 50;
+
+int contadorDesliga = 0;
+bool retornoEmergencia = false;
 
 
 // ===== MÓDULOS =====
