@@ -9,8 +9,8 @@ Servo servoG;
 // Define os pinos para cada servo
 const int pinoServoBase = 12; // verde
 const int pinoServoDireita = 11; //  azul
-const int pinoServoEsquerda = 10; // roxo
-const int pinoServoGarra = 9; // amarelo
+const int pinoServoEsquerda = 10; // amarelo
+const int pinoServoGarra = 9; // roxo
 
 const int pinoPot = A1; // Pino Analógico do Arduino para o potenciômetro
 
