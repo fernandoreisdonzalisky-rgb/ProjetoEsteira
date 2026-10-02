@@ -22,7 +22,7 @@ void verificarSensor1() {
 
   int estadoSensor1 = analogRead(sensor1);
 
-  if (estadoSensor1 <= 500 && sensor1Ativado == false) {
+  if (estadoSensor1 <= 250 && sensor1Ativado == false) {
 
     sensor1Ativado = true;
 
@@ -39,7 +39,7 @@ void verificarSensor1() {
     //Serial.println("Leitura1 realizada");
   }
 
-  if (estadoSensor1 >= 800) {
+  if (estadoSensor1 >= 750) {
 
     sensor1Ativado = false;
   }
@@ -56,7 +56,7 @@ if (sistemaLigado == false || sensor1Ativado == true) {
 
   int estadoSensor2 = analogRead(sensor2);
 
-  if (estadoSensor2 <= 500 && sensor2Ativado == false) {
+  if (estadoSensor2 <= 550 && sensor2Ativado == false) {
 
     sensor2Ativado = true;
 
@@ -68,7 +68,7 @@ if (sistemaLigado == false || sensor1Ativado == true) {
 
   }
 
-  if (estadoSensor2 >= 800 HIGH) {
+  if (estadoSensor2 >= 700) { 
 
     sensor2Ativado = false;
   }
