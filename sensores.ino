@@ -56,7 +56,7 @@ if (sistemaLigado == false || sensor1Ativado == true) {
 
   int estadoSensor2 = analogRead(sensor2);
 
-  if (estadoSensor2 == LOW && sensor2Ativado == false) {
+  if (estadoSensor2 <= 500 && sensor2Ativado == false) {
 
     sensor2Ativado = true;
 
@@ -68,7 +68,7 @@ if (sistemaLigado == false || sensor1Ativado == true) {
 
   }
 
-  if (estadoSensor2 == HIGH) {
+  if (estadoSensor2 >= 800 HIGH) {
 
     sensor2Ativado = false;
   }
