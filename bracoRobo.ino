@@ -1,8 +1,8 @@
   
-int servoBasepin = A3;
-int servoDireitapin = A1;
-int servoEsquerdapin = A2;
-int servoGarrapin = A0;
+int servoBasepin = 12;
+int servoDireitapin = 11;
+int servoEsquerdapin = 10;
+int servoGarrapin = 9;
 
 int rapidez = 20;
 
@@ -14,8 +14,8 @@ void iniciaRobo() {
   servoG.attach(servoGarrapin); 
 
   servoB.write(90); //meio da base
-  servoD.write(120); //ângulo mais alto da altura
-  servoE.write(120); //ângulo min do avanço
+  servoD.write(90); //ângulo mais alto da altura
+  servoE.write(130); //ângulo min do avanço
   servoG.write(90); //limite min Garra
 }
 
@@ -23,7 +23,7 @@ void retornaBraco() {
 
   bracoAtivo = true;
 
-  moverBase(90);
+  moverBase(0);
   controlarDireitaEsquerda(120);
   controlarGarra(90);
 

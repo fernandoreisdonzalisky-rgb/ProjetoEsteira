@@ -1,6 +1,6 @@
-int sensor1 = 9;
+int sensor1 = 8;
 
-int sensor2 = 11;
+int sensor2 = 7;
 
 
 void iniciaSensores() {
