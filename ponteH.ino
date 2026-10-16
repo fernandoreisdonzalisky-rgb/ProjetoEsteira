@@ -1,13 +1,8 @@
 int IN1 = 2;
 
-int ENA = A4;
-
-int velocidade = 200; // 0 a 255
-
 void iniciaPonteH() {
 
   pinMode(IN1, OUTPUT);
-  pinMode(ENA, OUTPUT);
 }
 
 // ===== LIGA ESTEIRA =====
@@ -18,8 +13,6 @@ void ligarEsteira(int espera) {
   delay(espera);
 
   digitalWrite(IN1, HIGH);
-
-  analogWrite(ENA, velocidade);
 
   esteiraLigada = true;
 
@@ -32,8 +25,6 @@ void ligarEsteira(int espera) {
 void desligarEsteira(int espera) {
 
   delay(espera);
-
-  analogWrite(ENA, 0);
 
   digitalWrite(IN1, LOW);
 

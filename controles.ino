@@ -7,12 +7,11 @@ void verificarTeclado() {
     if (tecla == 'L' || tecla == 'l') {
       sistemaLigado = true;
       Serial.println(">>> COMANDO TECLADO: Sistema Ligado");
-      ligarEsteira();
     }
     else if (tecla == 'D' || tecla == 'd') {
       Serial.println(">>> COMANDO TECLADO: Sistema Desligado");
-      sistemaLigado = false;
       desligarEsteira();
+      sistemaLigado = false;
     }
   }
 }
