@@ -36,6 +36,8 @@ void verificarSensor1() {
 
     ligarEsteira(0); //delay
 
+    sensor1Ativado = false;
+
     //Serial.println("Leitura1 realizada");
   }
 
@@ -45,16 +47,25 @@ void verificarSensor1() {
   }
 }
 void verificarSensor2() {
+
   int estadoSensor2 = analogRead(sensor2);
 
-  if (estadoSensor2 <= 250 && sensor2Ativado == false) {
+  // Rearma mesmo quando existe intertravamento
+  if (estadoSensor2 >= 750) {
+    sensor2Ativado = false;
+  }
+
+  // Bloqueia durante o ciclo do sensor 1 e do braço
+  if (!sistemaLigado || sensor1Ativado || bracoAtivo) {
+    return;
+  }
+
+  if (estadoSensor2 <= 250 && !sensor2Ativado) {
     sensor2Ativado = true;
 
     Serial.println("Objeto detectado no sensor 2");
     desligarEsteira();
-  }
 
-  if (estadoSensor2 >= 750) {
-    sensor2Ativado = false;
+    // Mantenha aqui a chamada original do ciclo do braço.
   }
 }
