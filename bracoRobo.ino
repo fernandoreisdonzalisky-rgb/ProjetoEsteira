@@ -223,10 +223,8 @@ void executarCicloRobo() {
 
   // --- PARTE 3: SENSOR 2 -> CAMINHÃO ---
 
-Serial.println("Caixa detectada no Sensor 2!");
 
 bracoAtivo = true;
-desligarEsteira();
 
 moverBase(45);
 
@@ -252,8 +250,6 @@ controlarEsquerda(100);
 moverBase(180);
 
 bracoAtivo = false;
-
-sensor2Ativado = false;
 
 Serial.println("Ciclo completo concluído!");
 
