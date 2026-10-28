@@ -79,6 +79,9 @@ void controlarGarra(int anguloDestino) {
   } else {
 
     for (int i = atual; i >= anguloDestino; i--) {
+
+      if (!sistemaLigado && !retornoEmergencia) return;
+
       servoG.write(i);
       atualizarSistema();
       delay(rapidez);
@@ -218,29 +221,40 @@ void executarCicloRobo() {
 }
 
 
-  // --- PARTE 3: ESTEIRA (SENSOR 2) -> CAMINHÃO ---
-  Serial.println("Caixa detectada no Sensor 2! Levando para o caminhão...");
+  // --- PARTE 3: SENSOR 2 -> CAMINHÃO ---
 
-  bracoAtivo = true;      // Para a esteira para o braço agir com segurança
-  
-  moverBase(45);         // Vai até o final da esteira (Sensor 2) 
-  controlarDireita(180);
-  controlarEsquerda(70);   
-  controlarEsquerda(90); 
-  controlarGarra(90);     // PEGA a caixa da esteira
-  controlarDireita(90);
-  controlarEsquerda(120);   // Recolhe
-  moverBase(0);          // Gira até o Caminhão
-       
-  controlarEsquerda(150);   // Avança     
-  controlarDireita(160);   // Recolhe
-  controlarGarra(0);   // SOLTA no caminhão
-  controlarDireita(90);  
-  controlarEsquerda(100);
-  
-  moverBase(180);      
-  bracoAtivo = false;   // Ciclo finalizado
-   // Volta para o início para a próxima caixa
-  Serial.println("Ciclo completo concluído!");
+Serial.println("Caixa detectada no Sensor 2!");
+
+bracoAtivo = true;
+desligarEsteira();
+
+moverBase(45);
+
+controlarDireita(180);
+controlarEsquerda(70);
+controlarEsquerda(90);
+
+controlarGarra(90);       // Pega a caixa
+
+controlarDireita(90);
+controlarEsquerda(120);
+
+moverBase(0);             // Gira até o caminhão
+
+controlarEsquerda(150);
+controlarDireita(160);
+
+controlarGarra(0);        // Solta a caixa
+
+controlarDireita(90);
+controlarEsquerda(100);
+
+moverBase(180);
+
+bracoAtivo = false;
+
+sensor2Ativado = false;
+
+Serial.println("Ciclo completo concluído!");
 
 }

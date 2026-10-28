@@ -1,6 +1,6 @@
-int sensor1 = A0;
+int sensor1 = A1;
 
-int sensor2 = A1;
+int sensor2 = A3;
 
 
 void iniciaSensores() {
@@ -45,31 +45,16 @@ void verificarSensor1() {
   }
 }
 void verificarSensor2() {
-
-  // BLOQUEIA TODO O SENSOR
-if (sistemaLigado == false || sensor1Ativado == true) {
-
-    //Serial.println("Sensor2 Desativado");
-
-    return;
-} 
-
   int estadoSensor2 = analogRead(sensor2);
 
   if (estadoSensor2 <= 250 && sensor2Ativado == false) {
-
     sensor2Ativado = true;
 
     Serial.println("Objeto detectado no sensor 2");
-
     desligarEsteira();
-
-    //Serial.println("leitura2 realizada");
-
   }
 
-  if (estadoSensor2 >= 750) { 
-
+  if (estadoSensor2 >= 750) {
     sensor2Ativado = false;
   }
 }
