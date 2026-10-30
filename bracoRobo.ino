@@ -1,17 +1,16 @@
-  
-int servoBasepin = 13; // verde
-int servoDireitapin = 12; // branco
-int servoEsquerdapin = 11; // amarelo
-int servoGarrapin = 10; // vermelho
-  
+int servoBasepin = 4; // verde
+int servoDireitapin = 16; // branco
+int servoEsquerdapin = 15; // amarelo
+int servoGarrapin = 5; // vermelho
+
 int rapidez = 20;
 
 void iniciaRobo() {
 
   servoB.attach(servoBasepin);
-  servoD.attach(servoDireitapin); 
+  servoD.attach(servoDireitapin);
   servoE.attach(servoEsquerdapin);
-  servoG.attach(servoGarrapin); 
+  servoG.attach(servoGarrapin);
 
   servoB.write(90); //meio da base
   servoD.write(90); //ângulo mais alto da altura
@@ -23,9 +22,10 @@ void retornaBraco() {
 
   bracoAtivo = true;
 
-  moverBase(0);
-  controlarDireitaEsquerda(120);
-  controlarGarra(90);
+  servoB.write(90);
+  servoD.write(90); 
+  servoE.write(130); 
+  servoG.write(90);
 
   bracoAtivo = false;
 
@@ -36,7 +36,6 @@ void retornaBraco() {
 }
 
 // --- FUNÇÕES DE MOVIMENTO BÁSICO (Músculos) ---
-// Estas funções garantem o movimento suave para qualquer ângulo
 
 void moverBase(int anguloDestino) {
 
@@ -54,7 +53,7 @@ void moverBase(int anguloDestino) {
   } else {
 
     for (int i = atual; i >= anguloDestino; i--) {
-      
+
       if (!sistemaLigado && !retornoEmergencia) return;
       servoB.write(i);
       atualizarSistema();
@@ -126,7 +125,7 @@ void controlarEsquerda(int anguloDestino) {
       atualizarSistema();
       delay(rapidez);
     }
- } else {
+  } else {
 
     for (int d = atual; d >= anguloDestino; d--) {
 
@@ -143,7 +142,6 @@ void controlarDireitaEsquerda(int anguloDestino) {
   int atualD = servoD.read();
   int atualE = servoE.read();
 
- 
   while (atualD != anguloDestino || atualE != anguloDestino) {
 
     if (!sistemaLigado && !retornoEmergencia) return;
@@ -151,7 +149,7 @@ void controlarDireitaEsquerda(int anguloDestino) {
     // Servo direita
     if (atualD < anguloDestino) {
       atualD++;
-    } 
+    }
     else if (atualD > anguloDestino) {
       atualD--;
     }
@@ -159,7 +157,7 @@ void controlarDireitaEsquerda(int anguloDestino) {
     // Servo esquerda
     if (atualE < anguloDestino) {
       atualE++;
-    } 
+    }
     else if (atualE > anguloDestino) {
       atualE--;
     }
@@ -172,6 +170,7 @@ void controlarDireitaEsquerda(int anguloDestino) {
     delay(rapidez);
   }
 }
+
 // --- FUNÇÕES DE AÇÃO COMPOSTA (Tarefas) ---
 
 void executarCicloRobo() {
@@ -181,13 +180,13 @@ void executarCicloRobo() {
   // --- PARTE 1: ESTOQUE -> ESTEIRA ---
   Serial.println("Iniciando: Estoque para Esteira");
   bracoAtivo = true;
-  
-  moverBase(180);  // Vai no Estoque        
+
+  moverBase(180);  // Vai no Estoque
   controlarDireitaEsquerda(180); //avança
   controlarGarra(0);     // PEGA
-  controlarGarra(90);  
+  controlarGarra(90);
   controlarDireitaEsquerda(120);//recolhe
-  
+
   moverBase(135);         // Vai para o início da Esteira
   controlarEsquerda(180);
   controlarDireitaEsquerda(160);
@@ -198,7 +197,7 @@ void executarCicloRobo() {
   verificarSensor1(); //verificação do sensor 1 para a ação do funil
   controlarDireitaEsquerda(120);
   controlarGarra(90);
-  
+
   bracoAtivo = false;     // Libera a esteira para levar a caixa
   moverBase(90);          // Fica em posição de espera no meio
 
@@ -206,51 +205,46 @@ void executarCicloRobo() {
   // --- PARTE 2: ESPERAR CHEGAR NO SENSOR 2 ---
 
   if (funilAberto == true) {
-  Serial.println("Aguardando caixa chegar no Sensor 2...");
+    Serial.println("Aguardando caixa chegar no Sensor 2...");
   }
   while (sensor2Ativado == false) {
-
-    //Serial.print("sistemaLigado=");
-    //Serial.println(sistemaLigado);
 
     if (!sistemaLigado && !retornoEmergencia) return;
 
     atualizarSistema();
 
     delay(100);
-}
+  }
 
 
   // --- PARTE 3: SENSOR 2 -> CAMINHÃO ---
 
+  bracoAtivo = true;
 
-bracoAtivo = true;
+  moverBase(45);
 
-moverBase(45);
+  controlarDireita(180);
+  controlarEsquerda(70);
+  controlarEsquerda(90);
 
-controlarDireita(180);
-controlarEsquerda(70);
-controlarEsquerda(90);
+  controlarGarra(90);       // Pega a caixa
 
-controlarGarra(90);       // Pega a caixa
+  controlarDireita(90);
+  controlarEsquerda(120);
 
-controlarDireita(90);
-controlarEsquerda(120);
+  moverBase(0);             // Gira até o caminhão
 
-moverBase(0);             // Gira até o caminhão
+  controlarEsquerda(150);
+  controlarDireita(160);
 
-controlarEsquerda(150);
-controlarDireita(160);
+  controlarGarra(0);        // Solta a caixa
 
-controlarGarra(0);        // Solta a caixa
+  controlarDireita(90);
+  controlarEsquerda(100);
 
-controlarDireita(90);
-controlarEsquerda(100);
+  moverBase(180);
 
-moverBase(180);
+  bracoAtivo = false;
 
-bracoAtivo = false;
-
-Serial.println("Ciclo completo concluído!");
-
+  Serial.println("Ciclo completo concluído!");
 }

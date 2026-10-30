@@ -15,12 +15,17 @@ void verificarTeclado() {
     }
   }
 }
-  void atualizarSistema() {
 
-   botaoLiga();
-   botaoDesliga();
+void atualizarSistema() {
 
-   verificarSensor1();
-   verificarSensor2();
-   verificarTeclado();
+  // durante o retorno de emergencia nao atualiza nada
+  // (evita chamar o botao desliga de novo dentro do proprio retorno)
+  if (retornoEmergencia == true) return;
+
+  botaoLiga();
+  botaoDesliga();
+
+  verificarSensor1();
+  verificarSensor2();
+  verificarTeclado();
 }

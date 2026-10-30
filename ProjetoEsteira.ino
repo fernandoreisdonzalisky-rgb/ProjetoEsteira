@@ -1,18 +1,12 @@
-
-#include <Servo.h>
+#include <ESP32Servo.h>
 
 Servo Fservo;
-
 Servo servoB;
-
 Servo servoD;
-
 Servo servoE;
-
 Servo servoG;
 
 //====== VARIÁVEIS =======
-
 bool sistemaLigado = false;
 bool sensor1Ativado = false;
 bool sensor2Ativado = false;
@@ -36,11 +30,11 @@ void ligarEsteira(int espera = 0);
 
 void desligarEsteira(int espera = 0);
 
-void abrirFunil(int destino,int espera = 0);
+void abrirFunil(int destino, int espera = 0);
 
 bool funilAtivo();
 
-void fecharFunil(int destino,int espera = 0);
+void fecharFunil(int destino, int espera = 0);
 
 void verificarSensor1();
 
@@ -56,14 +50,27 @@ void moverBase(int anguloDestino);
 
 void controlarGarra(int anguloDestino);
 
-void controlarEsquerdo(int anguloDestino);
+void controlarEsquerda(int anguloDestino);
 
 void controlarDireita(int anguloDestino);
+
+void controlarDireitaEsquerda(int anguloDestino);
 
 void executarCicloRobo();
 
 void verificarTeclado();
 
+void atualizarSistema();
+
+void iniciaPonteH();
+
+void iniciaFunil();
+
+void iniciaSensores();
+
+void iniciaBotao();
+
+void iniciaRobo();
 
 
 // ===== SETUP =====
@@ -81,6 +88,9 @@ void setup() {
   iniciaBotao();
 
   iniciaRobo();
+
+  Serial.println("=== PROJETO ESTEIRA - ESP32 ===");
+  Serial.println("Tecla L = ligar | Tecla D = desligar");
 }
 
 // ===== LOOP =====
@@ -88,7 +98,7 @@ void setup() {
 void loop() {
 
   verificarTeclado();
-   
+
   botaoLiga();
 
   botaoDesliga();
@@ -98,5 +108,4 @@ void loop() {
   verificarSensor2();
 
   executarCicloRobo();
-
 }

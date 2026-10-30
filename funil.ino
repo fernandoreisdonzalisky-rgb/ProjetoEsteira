@@ -1,6 +1,4 @@
-int servoPin = A5;
-
-//ESTADO DO FUNIL
+int servoPin = 25;
 
 void iniciaFunil() {
 
@@ -9,13 +7,13 @@ void iniciaFunil() {
   Fservo.write(0);
 }
 
-void abrirFunil(int destino,int espera) {
+void abrirFunil(int destino, int espera) {
 
   if (funilAberto == false) {
     Serial.println("Abrindo funil...");
-    
+
     delay(espera);
-    
+
     int atual = Fservo.read();
 
     // Movimento suave de abertura
@@ -27,7 +25,7 @@ void abrirFunil(int destino,int espera) {
         Fservo.write(i);
 
         delay(15); // Ajusta a velocidade da abertura
-      }      
+      }
     }
 
     funilAberto = true;
@@ -35,8 +33,8 @@ void abrirFunil(int destino,int espera) {
   }
 }
 
-void fecharFunil(int destino,int espera) {
-  
+void fecharFunil(int destino, int espera) {
+
   if (funilAberto == true) {
     Serial.println("Fechando funil...");
 
@@ -64,18 +62,10 @@ bool funilAtivo() {
   Serial.println(Fservo.read());
 
   if (funilAberto == true) {
-
     Serial.println("Funil ATIVO");
-
-    return true;
+  } else {
+    Serial.println("Funil DESATIVADO");
   }
 
-  if (funilAberto == false){
-
-  Serial.println("Funil DESATIVADO");
-
-  return false;
-  }
- 
-
+  return funilAberto;
 }

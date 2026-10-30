@@ -1,5 +1,5 @@
-int pinBotaoLiga= 5;
-int pinBotaoDesliga = 6;
+int pinBotaoLiga = 33;
+int pinBotaoDesliga = 32;
 
 
 void iniciaBotao() {
@@ -12,13 +12,14 @@ void botaoLiga() {
 
   int estadoliga = digitalRead(pinBotaoLiga);
 
-  if (estadoliga == LOW) {
+  // so liga na hora que aperta, e se ja nao estiver ligado
+  if (estadoliga == LOW && sistemaLigado == false) {
 
     sistemaLigado = true;
 
     Serial.println("Sistema LIGADO");
 
-    delay(500);
+    delay(200);   // espera soltar o botao
   }
 }
 

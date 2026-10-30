@@ -1,12 +1,12 @@
-int IN1 = 2;
+int IN1 = 22;
 
 void iniciaPonteH() {
 
   pinMode(IN1, OUTPUT);
+  digitalWrite(IN1, LOW);
 }
 
 // ===== LIGA ESTEIRA =====
-
 
 void ligarEsteira(int espera) {
 
@@ -17,7 +17,7 @@ void ligarEsteira(int espera) {
   esteiraLigada = true;
 
   Serial.println("Esteira ligada");
-  
+
 }
 
 // ===== DESLIGA ESTEIRA =====
