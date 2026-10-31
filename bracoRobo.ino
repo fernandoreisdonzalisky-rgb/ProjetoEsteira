@@ -1,7 +1,7 @@
-int servoBasepin = 4; // verde
+int servoBasepin = 5; // verde
 int servoDireitapin = 16; // branco
 int servoEsquerdapin = 15; // amarelo
-int servoGarrapin = 5; // vermelho
+int servoGarrapin = 4; // vermelho
 
 int rapidez = 20;
 
