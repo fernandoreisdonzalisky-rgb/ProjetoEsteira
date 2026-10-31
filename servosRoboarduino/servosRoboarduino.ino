@@ -8,8 +8,8 @@ Servo servoG;
 
 // Pinos de cada servo
 const int pinoServoBase = 5;      // verde
-const int pinoServoDireita = 16;   // azul
-const int pinoServoEsquerda = 15;  // amarelo
+const int pinoServoDireita = 15;   // azul
+const int pinoServoEsquerda = 16;  // amarelo
 const int pinoServoGarra = 4;     // roxo
 
 // Posicoes atuais
