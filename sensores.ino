@@ -1,9 +1,6 @@
 int sensor1 = 35;
 
-int sensor2 = 34;
-
-const int SENSOR_ATIVO = 1000;  // era 250  (objeto detectado abaixo disso)
-const int SENSOR_LIVRE = 3000;  // era 750  (sensor livre acima disso)
+int sensor2 = 32;
 
 
 void iniciaSensores() {
@@ -23,7 +20,7 @@ void verificarSensor1() {
 
   int estadoSensor1 = analogRead(sensor1);
 
-  if (estadoSensor1 <= SENSOR_ATIVO && sensor1Ativado == false) {
+  if (estadoSensor1 <= 2500 && sensor1Ativado == false) {
 
     sensor1Ativado = true;
 
@@ -40,7 +37,7 @@ void verificarSensor1() {
     sensor1Ativado = false;
   }
 
-  if (estadoSensor1 >= SENSOR_LIVRE) {
+  if (estadoSensor1 >= 4000) {
 
     sensor1Ativado = false;
   }
@@ -51,7 +48,7 @@ void verificarSensor2() {
   int estadoSensor2 = analogRead(sensor2);
 
   // Rearma mesmo quando existe intertravamento
-  if (estadoSensor2 >= SENSOR_LIVRE) {
+  if (estadoSensor2 >= 4000) {
     sensor2Ativado = false;
   }
 
@@ -60,7 +57,7 @@ void verificarSensor2() {
     return;
   }
 
-  if (estadoSensor2 <= SENSOR_ATIVO && !sensor2Ativado) {
+  if (estadoSensor2 <= 1800 && !sensor2Ativado) {
     sensor2Ativado = true;
 
     Serial.println("Objeto detectado no sensor 2");

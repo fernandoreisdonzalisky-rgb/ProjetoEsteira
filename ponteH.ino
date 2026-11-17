@@ -1,9 +1,9 @@
-int IN1 = 22;
+int pinorele = 22;
 
 void iniciaPonteH() {
 
-  pinMode(IN1, OUTPUT);
-  digitalWrite(IN1, LOW);
+  pinMode(pinorele, OUTPUT);
+  digitalWrite(pinorele, LOW);
 }
 
 // ===== LIGA ESTEIRA =====
@@ -12,7 +12,7 @@ void ligarEsteira(int espera) {
 
   delay(espera);
 
-  digitalWrite(IN1, HIGH);
+  digitalWrite(pinorele, HIGH);
 
   esteiraLigada = true;
 
@@ -26,7 +26,7 @@ void desligarEsteira(int espera) {
 
   delay(espera);
 
-  digitalWrite(IN1, LOW);
+  digitalWrite(pinorele, LOW);
 
   esteiraLigada = false;
 

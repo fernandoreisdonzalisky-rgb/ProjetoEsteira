@@ -1,5 +1,5 @@
-int pinBotaoLiga = 33;
-int pinBotaoDesliga = 32;
+int pinBotaoLiga = 26;
+int pinBotaoDesliga = 25;
 
 
 void iniciaBotao() {

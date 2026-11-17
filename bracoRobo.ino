@@ -1,6 +1,6 @@
 int servoBasepin = 5; // verde
-int servoDireitapin = 16; // branco
-int servoEsquerdapin = 15; // laranja
+int servoDireitapin = 17; // branco
+int servoEsquerdapin = 16; // laranja
 int servoGarrapin = 4; // vermelho
 
 int rapidez = 20;
@@ -13,8 +13,8 @@ void iniciaRobo() {
   servoG.attach(servoGarrapin);
 
   servoB.write(90); //meio da base
-  servoD.write(90); //ângulo mais alto da altura
-  servoE.write(130); //ângulo min do avanço
+  servoD.write(34); //ângulo mais alto da altura
+  servoE.write(84); //ângulo min do avanço
   servoG.write(90); //limite min Garra
 }
 
@@ -23,8 +23,8 @@ void retornaBraco() {
   bracoAtivo = true;
 
   servoB.write(90);
-  servoD.write(90); 
-  servoE.write(130); 
+  servoD.write(34); 
+  servoE.write(84); 
   servoG.write(90);
 
   bracoAtivo = false;
@@ -182,24 +182,25 @@ void executarCicloRobo() {
   bracoAtivo = true;
 
   moverBase(180);  // Vai no Estoque
-  controlarDireitaEsquerda(180); //avança
-  controlarGarra(0);     // PEGA
-  controlarGarra(90);
-  controlarDireitaEsquerda(120);//recolhe
+  controlarGarra(130);
+  controlarEsquerda(20); //avança
+  controlarDireita(82);     // PEGA
+  controlarEsquerda(9);
+  controlarDireita(164);
+  controlarGarra(108);
+  controlarDireita(100);//recolhe
 
-  moverBase(135);         // Vai para o início da Esteira
-  controlarEsquerda(180);
-  controlarDireitaEsquerda(160);
-  controlarEsquerda(180);
+  moverBase(159);         // Vai para o início da Esteira
+  controlarEsquerda(60);
+  controlarDireita(147);
   desligarEsteira();
-  controlarGarra(0);      // SOLTA na esteira
-  bracoAtivo = false;     // Libera o sensor para parar a esteira e abrir funil
-  verificarSensor1(); //verificação do sensor 1 para a ação do funil
-  controlarDireitaEsquerda(120);
+  controlarGarra(130);      // SOLTA na esteira
+  controlarDireita(34);
+  controlarEsquerda(84);
   controlarGarra(90);
-
-  bracoAtivo = false;     // Libera a esteira para levar a caixa
   moverBase(90);          // Fica em posição de espera no meio
+  bracoAtivo = false;
+  verificarSensor1(); //verificação do sensor 1 para a ação do funil
 
 
   // --- PARTE 2: ESPERAR CHEGAR NO SENSOR 2 ---
@@ -221,26 +222,21 @@ void executarCicloRobo() {
 
   bracoAtivo = true;
 
-  moverBase(45);
-
-  controlarDireita(180);
-  controlarEsquerda(70);
-  controlarEsquerda(90);
-
+  moverBase(34);
+  controlarGarra(150);
+  controlarEsquerda(49);
+  controlarDireita(150);
   controlarGarra(90);       // Pega a caixa
 
+  controlarDireita(100);
+  moverBase(0);     //gira até o caminhão
+  controlarEsquerda(14);
+  controlarDireita(130);
+  controlarGarra(130);  //solta a caixa
   controlarDireita(90);
-  controlarEsquerda(120);
 
-  moverBase(0);             // Gira até o caminhão
 
-  controlarEsquerda(150);
-  controlarDireita(160);
-
-  controlarGarra(0);        // Solta a caixa
-
-  controlarDireita(90);
-  controlarEsquerda(100);
+// volta para o setup
 
   moverBase(180);
 

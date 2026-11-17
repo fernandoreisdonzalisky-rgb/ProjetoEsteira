@@ -1,4 +1,4 @@
-int servoPin = 25;
+int servoPin = 21;
 
 void iniciaFunil() {
 
