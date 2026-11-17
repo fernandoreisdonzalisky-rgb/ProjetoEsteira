@@ -137,39 +137,6 @@ void controlarEsquerda(int anguloDestino) {
   }
 }
 
-void controlarDireitaEsquerda(int anguloDestino) {
-
-  int atualD = servoD.read();
-  int atualE = servoE.read();
-
-  while (atualD != anguloDestino || atualE != anguloDestino) {
-
-    if (!sistemaLigado && !retornoEmergencia) return;
-
-    // Servo direita
-    if (atualD < anguloDestino) {
-      atualD++;
-    }
-    else if (atualD > anguloDestino) {
-      atualD--;
-    }
-
-    // Servo esquerda
-    if (atualE < anguloDestino) {
-      atualE++;
-    }
-    else if (atualE > anguloDestino) {
-      atualE--;
-    }
-
-    servoD.write(atualD);
-    servoE.write(atualE);
-
-    atualizarSistema();
-
-    delay(rapidez);
-  }
-}
 
 // --- FUNÇÕES DE AÇÃO COMPOSTA (Tarefas) ---
 
@@ -214,7 +181,7 @@ void executarCicloRobo() {
 
     atualizarSistema();
 
-    delay(100);
+    delay(10);
   }
 
 
