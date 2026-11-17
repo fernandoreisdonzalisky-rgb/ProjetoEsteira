@@ -20,7 +20,7 @@ void verificarSensor1() {
 
   int estadoSensor1 = analogRead(sensor1);
 
-  if (estadoSensor1 <= 2500 && sensor1Ativado == false) {
+  if (estadoSensor1 <= 3200 && sensor1Ativado == false) {
 
     sensor1Ativado = true;
 
@@ -48,7 +48,7 @@ void verificarSensor2() {
   int estadoSensor2 = analogRead(sensor2);
 
   // Rearma mesmo quando existe intertravamento
-  if (estadoSensor2 >= 4000) {
+  if (estadoSensor2 >= 1200) {
     sensor2Ativado = false;
   }
 
@@ -57,7 +57,7 @@ void verificarSensor2() {
     return;
   }
 
-  if (estadoSensor2 <= 1800 && !sensor2Ativado) {
+  if (estadoSensor2 <= 900 && !sensor2Ativado) {
     sensor2Ativado = true;
 
     Serial.println("Objeto detectado no sensor 2");
