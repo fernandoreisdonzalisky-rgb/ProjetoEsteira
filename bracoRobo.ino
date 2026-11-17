@@ -34,7 +34,7 @@ void retornaBraco() {
   Serial.println("Sistema DESLIGADO.");
 }
 
-// --- FUNÇÕES DE MOVIMENTO BÁSICO (Músculos) ---
+// --- FUNÇÕES DE MOVIMENTO BÁSICO ---
 
 void moverBase(int anguloDestino) {
 
