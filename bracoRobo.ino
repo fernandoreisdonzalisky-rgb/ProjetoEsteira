@@ -21,10 +21,10 @@ void retornaBraco() {
 
   bracoAtivo = true;
 
-  servoB.write(90);
-  servoD.write(34); 
+  servoD.write(36); 
   servoE.write(84); 
   servoG.write(90);
+  servoB.write(90);
 
   bracoAtivo = false;
 
