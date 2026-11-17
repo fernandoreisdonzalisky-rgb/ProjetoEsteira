@@ -150,8 +150,8 @@ void executarCicloRobo() {
 
   moverBase(180);  // Vai no Estoque
   controlarGarra(130);
+  controlarDireita(82);
   controlarEsquerda(20); //avança
-  controlarDireita(82);     // PEGA
   controlarEsquerda(9);
   controlarDireita(164);
   controlarGarra(108);
