@@ -6,16 +6,15 @@ int servoGarrapin = 4; // vermelho
 int rapidez = 20;
 
 void iniciaRobo() {
-
   servoB.attach(servoBasepin);
   servoD.attach(servoDireitapin);
   servoE.attach(servoEsquerdapin);
   servoG.attach(servoGarrapin);
-
-  servoB.write(90); //meio da base
-  servoD.write(34); //ângulo mais alto da altura
+  
+  servoD.write(36); //ângulo mais alto da altura
   servoE.write(84); //ângulo min do avanço
   servoG.write(90); //limite min Garra
+  servoB.write(90); //meio da base
 }
 
 void retornaBraco() {
