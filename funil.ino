@@ -19,7 +19,7 @@ void abrirFunil(int destino, int espera) {
     // Movimento suave de abertura
     if (atual < destino) {
 
-      for (int i = atual; i <= destino; i++) {
+      for (int i = atual; i <= destino; i+=1) {
 
         if (!sistemaLigado) return;
         Fservo.write(i);
@@ -42,7 +42,7 @@ void fecharFunil(int destino, int espera) {
 
     // Movimento suave de fechamento
     if (atual > destino) {
-      for (int i = atual; i >= destino; i--) {
+      for (int i = atual; i >= destino; i-=1) {
 
         if (!sistemaLigado) return;
         Fservo.write(i);
