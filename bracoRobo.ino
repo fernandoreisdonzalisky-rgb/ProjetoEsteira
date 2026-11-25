@@ -3,7 +3,7 @@ int servoDireitapin = 17; // branco
 int servoEsquerdapin = 16; // laranja
 int servoGarrapin = 4; // vermelho
 
-int rapidez = 20;
+int rapidez = 19;
 
 void iniciaRobo() {
   servoB.attach(servoBasepin);
