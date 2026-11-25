@@ -20,7 +20,7 @@ void verificarSensor1() {
 
   int estadoSensor1 = analogRead(sensor1);
 
-  if (estadoSensor1 <= 3200 && sensor1Ativado == false) {
+  if (estadoSensor1 <= 3600 && sensor1Ativado == false) {
 
     sensor1Ativado = true;
 
